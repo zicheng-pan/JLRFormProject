@@ -1,0 +1,24 @@
+.bar-border{
+    border-radius: 10px;
+    overflow: hidden;
+}
+.bar{
+    width: 100%;
+    background-color:pink ;
+    box-sizing: border-box;
+    border-style:solid;
+    border-image: linear-gradient(pink,red) 20 / 10px;
+    padding:7px
+}
+.bar::before{
+    display: block;
+    counter-reset: progress var(--precent);
+    content:'Loading...' counter(progress) '%';
+    width: calc(1% * var(--precent));
+    color: #ffffff;
+    background-image: linear-gradient(to right top,#55efc4,#a29bfe);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 6px;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>粒子倒计时</title>
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 900;
+            src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh50XSwiPHA.ttf) format('truetype');
+        }
+
+        body {
+            background-color: #24282f;
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #canvas-number {
+            width: 680px;
+            height: 420px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<script src="js/TweenMax.min.js"></script>
+
+<canvas id="canvas-number"></canvas>
+<canvas id="canvas-dots"></canvas>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="js/daojishiclient.js"></script>
+
+</body>
+
+</html>

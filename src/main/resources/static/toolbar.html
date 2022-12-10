@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/toolbar.css" rel="stylesheet">
+</head>
+<body>
+<div class="bar-border">
+    <div id="cdsid" class="bar" style="--precent:80"></div>
+</div>
+</body>
+<script>
+    var number = 5;
+    setInterval(function () {
+
+        document.getElementById("cdsid").style = "--precent:" + number++;
+    }, 100)
+
+</script>
+</html>

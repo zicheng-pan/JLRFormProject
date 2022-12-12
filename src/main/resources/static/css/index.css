@@ -1,0 +1,68 @@
+.import-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: gradual 1.2s linear 1;
+  animation-fill-mode: forwards;
+}
+@keyframes gradual {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1.0;
+  }
+}
+.operation-button {
+  position: relative;
+  margin-top: 30px;
+}
+.operation-button:first-child {
+  margin-top: 100px;
+}
+.operation-success-icon {
+  position: absolute;
+  top: 8px;
+  right: -22px;
+  font-size: 16px;
+  color: #52C41A;
+}
+.import-setting {
+  position: absolute;
+  margin-top: 20px;
+  right: 20px;
+}
+.import-hint {
+  margin-top: 30px;
+  color: #8F8F8F;
+  font-size: 13px;
+}
+
+/* 自定义抽奖弹窗组件 */
+.custom-item {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin-top: 20px;
+  display: flex;
+  white-space: nowrap;
+}
+.custom-item-input-name {
+  width: 170px;
+}
+.custom-item-input-tag {
+  width: 150px;
+}
+.custom-add-btn {
+  margin-top: 20px;
+  width: 100%;
+}
+.custom-item-delete {
+  margin-left: 15px;
+}

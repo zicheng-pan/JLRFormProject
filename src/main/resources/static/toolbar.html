@@ -7,15 +7,14 @@
 </head>
 <body>
 <div class="bar-border">
-    <div id="cdsid" class="bar" style="--precent:80"></div>
+    <div id="timebar" class="bar" style="--precent:80"></div>
 </div>
 </body>
 <script>
-    var number = 5;
+    var number = 0;
     setInterval(function () {
-
-        document.getElementById("cdsid").style = "--precent:" + number++;
-    }, 100)
+        document.getElementById("timebar").style = "--precent:" + number++;
+    }, 1000)
 
 </script>
 </html>

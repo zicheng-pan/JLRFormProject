@@ -52,23 +52,30 @@ public class UserService {
 
     public List<UserDto> getAllRank(){
         List<User> users = getAllUsers();
-        List<User> submiteduser = users.stream().filter(u ->u.getSubmitTime() != null).collect(Collectors.toList());
+        List<User> submitedusers = users.stream().filter(u ->u.getSubmitTime() != null).collect(Collectors.toList());
 
-        List<UserDto> userDtos = new ArrayList<>(submiteduser.size());
-        for(int rank = 0 ; rank < submiteduser.size(); rank++){
+        List<UserDto> submitedUserDtos = new ArrayList<>(submitedusers.size());
+        for(int i = 0 ; i < submitedusers.size(); i++){
             UserDto userDto = new UserDto();
-            User user = submiteduser.get(rank);
-            userDto.setRank(rank+1);
-            userDto.setCdsid(user.getCdsid());
-            userDto.setEName(user.getEName());
-            userDto.setCName(user.getCName());
-            userDto.setScore(user.getScore());
-            userDto.setSubmitTime(user.getSubmitTime());
-            userDtos.add(userDto);
+            User submiteduser = submitedusers.get(i);
+            userDto.setCdsid(submiteduser.getCdsid());
+            userDto.setEName(submiteduser.getEName());
+            userDto.setCName(submiteduser.getCName());
+            userDto.setScore(submiteduser.getScore());
+            userDto.setSubmitTime(submiteduser.getSubmitTime());
+            submitedUserDtos.add(userDto);
         }
 
-        Collections.sort(userDtos, new UserDto.UserComparator());
-        return userDtos;
+        Collections.sort(submitedUserDtos, new UserDto.UserComparator());
+
+        List<UserDto> userRankList = new ArrayList<>();
+        for(UserDto userDto: submitedUserDtos){
+            Integer score = userDto.getScore();
+            Integer rankLowerThanCurrentUser = submitedUserDtos.stream().filter(su -> su.getScore() > score || (su.getScore().equals(score) && su.getSubmitTime().getTime() < userDto.getSubmitTime().getTime())).collect(Collectors.toList()).size();
+            userDto.setRank(rankLowerThanCurrentUser + 1);
+            userRankList.add(userDto);
+        }
+        return userRankList;
     }
 
     public List<UserDto> getPriceRank(){

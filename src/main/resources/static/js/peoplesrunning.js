@@ -291,8 +291,8 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/peoplesrunning', function (result) {
             if (cdsids.indexOf(result.body) == -1) {
-                if (cdsids.length >= 30) {
-                    cdsids.pop();
+                if (cdsids.length >= 25) {
+                    cdsids.pop(10);
                 }
                 cdsids.push(result.body);
                 initialize();

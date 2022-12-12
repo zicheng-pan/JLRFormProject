@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奖品池</title>
+</head>
+<body>
+
+<script>
+
+    var users = [];
+    var user1 = {"name": "test", "department": "tttttttt"};
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    users.push(user1);
+    var userlist = JSON.stringify(users);
+    localStorage.setItem("users", userlist);
+
+</script>
+<!-- 渲染标签 -->
+<div id="container"></div>
+
+<!-- 动画组件 -->
+<script src="./lib/animation-plug/three.min.js"></script>
+<script src="./lib/animation-plug/tween.min.js"></script>
+<script src="./lib/animation-plug/TrackballControls.js"></script>
+<script src="./lib/animation-plug/CSS3DRenderer.js"></script>
+<script src="./js/lucky-draw-animation.js"></script>
+<link rel="stylesheet" href="./css/lucky-draw-animation.css">
+<script src="js/jquery-1.8.3.min.js"></script>
+
+
+<!-- Vue -->
+<script src="./lib/vue.min.js"></script>
+
+<!-- antd -->
+<script src="./lib/ant-design-vue/dist/antd.js"></script>
+<link href="./lib/ant-design-vue/dist/antd.css" rel="stylesheet"/>
+
+<!-- exdownload -->
+<!--<script src="./lib/exdownload.js"></script>-->
+
+<!-- 公用 JS -->
+<script src="./js/public.js"></script>
+
+<!-- Vue 渲染组件 -->
+<div id="app"></div>
+
+<!-- Vue UI -->
+<script src="./js/lucky-draw.js"></script>
+<link rel="stylesheet" href="./css/lucky-draw.css">
+</body>
+</html>

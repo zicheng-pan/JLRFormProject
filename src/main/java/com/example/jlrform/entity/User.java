@@ -1,5 +1,6 @@
 package com.example.jlrform.entity;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,8 +28,8 @@ public class User {
     private String EName;
     @Column(name="c_name")
     private String CName;
-    @Column(name="involved")
-    private Boolean involved;
+    @Column(name="submit_time")
+    private Date submitTime;
     @Column(name="score")
     private Integer score;
 

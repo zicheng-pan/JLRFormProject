@@ -3,6 +3,7 @@ package com.example.jlrform.service;
 import com.example.jlrform.dao.UserDao;
 import com.example.jlrform.entity.User;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class UserService {
         user.setCsid(csid);
         user.setEName(eName);
         user.setCName(cName);
-        user.setInvolved(involved);
+        user.setSubmitTime(new Date());
         user.setScore(score);
         return userDao.save(user);
     }

@@ -1,1 +1,0 @@
-insert into user(e_name,c_name) values('test1','test2');

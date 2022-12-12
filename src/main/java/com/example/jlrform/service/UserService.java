@@ -20,4 +20,14 @@ public class UserService {
         userDao.findAll().forEach(u -> users.add(u));
         return users;
     }
+
+    public User saveUser(String csid,String eName,String cName,Boolean involved,int score){
+        User user = new User();
+        user.setCsid(csid);
+        user.setEName(eName);
+        user.setCName(cName);
+        user.setInvolved(involved);
+        user.setScore(score);
+        return userDao.save(user);
+    }
 }

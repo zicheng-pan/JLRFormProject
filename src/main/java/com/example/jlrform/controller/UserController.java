@@ -2,9 +2,11 @@ package com.example.jlrform.controller;
 
 import com.example.jlrform.entity.User;
 import com.example.jlrform.service.UserService;
+import java.util.List;
 import javax.xml.ws.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,9 +20,18 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user/all")
-    public Response<User> setCountDownPageNumber() {
-        Response<User> response = new Response<>();
+    public List<User> getAllUsers() {
 
-        return new Response<>(userService.getAllUsers());
+        return userService.getAllUsers();
+    }
+
+    @PostMapping("/user")
+    public User saveUser(@RequestParam String eName
+            ,@RequestParam String cName
+            ,@RequestParam String csid
+            ,@RequestParam Boolean involved
+            ,@RequestParam int score) {
+
+        return userService.saveUser(csid,eName,cName,involved,score);
     }
 }

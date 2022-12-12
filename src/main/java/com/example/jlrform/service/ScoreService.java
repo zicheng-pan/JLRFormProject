@@ -23,6 +23,9 @@ public class ScoreService {
 
     public void calculateScore(String cdsid, String answer) {
         User user = userService.getUserByCDSId(cdsid);
+        if(user == null){
+            throw new RuntimeException("There is no user named "+ cdsid);
+        }
         List<QuizOption> options = quizService.getRightOptions();
         Map<Integer, QuizOption> quizAnswer = options.stream().collect(Collectors.toMap(QuizOption::getQuestionIndex, option -> option));
         String[] answers = answer.split(",");

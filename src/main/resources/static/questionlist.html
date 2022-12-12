@@ -17,101 +17,6 @@
 <body style="background-color:white">
 <div class="wrapper">
     <div id="answer" class="card_wrap">
-        <!--Q1-->
-        <div class="card_cont card1">
-            <div class="card">
-                <p class="question">
-                    <span>Q1、</span>以下哪项最能说明您的投资经验？
-                </p>
-                <ul class="select">
-                    <li>
-                        <input id="q1_1" type="radio" name="r-group-1"><label
-                            for="q1_1">除存款、国债外,我几乎不投资其他金融产品</label>
-                    </li>
-                    <li>
-                        <input id="q1_2" type="radio" name="r-group-1"><label
-                            for="q1_2">大部分投资于外汇、国债等，较少投资于股票、基金等风险产品</label>
-                    </li>
-                    <li>
-                        <input id="q1_3" type="radio" name="r-group-1"><label for="q1_3">资产均衡地分布于存款、国债、银行理财产品、信托产品、股票、基金等</label>
-                    </li>
-                    <li>
-                        <input id="q1_4" type="radio" name="r-group-1"><label
-                            for="q1_4">大部分投资于股票、基金、外汇等高风险产品，较少投资于存款、国债</label>
-                    </li>
-                    <li>
-                        <input id="q1_5" type="radio" name="r-group-1"><label
-                            for="q1_5">更倾向于互联网金融产品、更倾向于互联网金融产品</label>
-                    </li>
-                </ul>
-                <div class="card_bottom">
-                    <span><b>1</b>/9</span>
-                </div>
-            </div>
-        </div><!--Q2-->
-        <div class="card_cont card2">
-            <div class="card">
-                <p class="question">
-                    <span>Q2、</span>以下哪项最能说明您的投资经验？您的投资经验
-                </p>
-                <ul class="select">
-                    <li>
-                        <input id="q2_1" type="radio" name="r-group-2"><label
-                            for="q2_1">除存款、国债外,我几乎不投资其他金融产品</label>
-                    </li>
-                    <li>
-                        <input id="q2_2" type="radio" name="r-group-2"><label
-                            for="q2_2">大部分投资于外汇、国债等，较少投资于股票、基金等风险产品</label>
-                    </li>
-                    <li>
-                        <input id="q2_3" type="radio" name="r-group-2"><label for="q2_3">资产均衡地分布于存款、国债、银行理财产品、信托产品、股票、基金等</label>
-                    </li>
-                    <li>
-                        <input id="q2_4" type="radio" name="r-group-2"><label
-                            for="q2_4">大部分投资于股票、基金、外汇等高风险产品，较少投资于存款、国债</label>
-                    </li>
-                    <li>
-                        <input id="q2_5" type="radio" name="r-group-2"><label
-                            for="q2_5">更倾向于互联网金融产品更倾向于互联网金融产品</label>
-                    </li>
-                </ul>
-                <div class="card_bottom">
-                    <a class="prev">上一题</a><span><b>2</b>/9</span>
-                </div>
-            </div>
-        </div><!--Q3-->
-        <div class="card_cont card3">
-            <div class="card">
-                <p class="question">
-                    <span>Q3、</span>以下哪项最能说明您的投资经验？您的投资经验
-                </p>
-                <ul class="select">
-                    <li>
-                        <input id="q3_1" type="radio" name="r-group-3"><label
-                            for="q3_1">除存款、国债外,我几乎不投资其他金融产品</label>
-                    </li>
-                    <li>
-                        <input id="q3_2" type="radio" name="r-group-3"><label
-                            for="q3_2">大部分投资于外汇、国债等，较少投资于股票、基金等风险产品</label>
-                    </li>
-                    <li>
-                        <input id="q3_3" type="radio" name="r-group-3"><label for="q3_3">资产均衡地分布于存款、国债、银行理财产品、信托产品、股票、基金等</label>
-                    </li>
-                    <li>
-                        <input id="q3_4" type="radio" name="r-group-3"><label
-                            for="q3_4">大部分投资于股票、基金、外汇等高风险产品，较少投资于存款、国债</label>
-                    </li>
-                    <li>
-                        <input id="q3_5" type="radio" name="r-group-3"><label for="q3_5">更倾向于互联网金融产品</label>
-                    </li>
-                </ul>
-                <div class="card_bottom">
-                    <a class="prev">上一题</a><span><b>3</b>/9</span>
-                </div>
-            </div>
-        </div>
-
-        </div>
     </div><!--/card_wrap-->
     <div>
         <img src="pic/landrover.gif">
@@ -120,9 +25,9 @@
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/questionlist.js"></script>
 <script>
+    var questionNum = 0;
     var answerResult = {};
     $(function () {
-        $("#answer").answerSheet({});
         getAllQuestions();
     })
 
@@ -138,19 +43,10 @@
         return (false);
     }
 
-    $("#mysubmit").click(function () {
-        if (confirm("您确定要已经完成了吗？")) {
-            var cdsid = getQueryVariable("cdsid");
-            var answer = [1, 0, 0, 1, 0];
-            window.location = "http://localhost:8081/peoplesrunning?cdsid=" + cdsid + "&answer=" + answer;
-        } else {
-        }
-    });
-
-
     function getAllQuestions(){
         $.get("http://localhost:8081/quiz/all", function (data) {
             console.log(data);
+            questionNum = data.length;
             var html = '';
             for(i = 0;i<data.length;i++){
                 var question = data[i];
@@ -158,8 +54,8 @@
 
                 answerResult[question.index] = 1;
 
-                var cardNum = 'card'+question.index;
-                if(question.index >3){
+                var cardNum = 'card'+(i+1);
+                if((i+1) >3){
                     cardNum = '';
                 }
 
@@ -171,23 +67,45 @@
                     '                <ul class="select">\n';
                 for(j = 0;j<options.length;j++){
                     html += '                    <li>\n' +
-                        '                        <input id="q'+i+'_'+j+'" type="radio" name="r-group-'+i+'"><label\n' +
-                        '                            for="q'+i+'_'+j+'">'+options[j]+'</label>\n' +
+                        '                        <input id="q'+i+'_'+j+'" type="radio" name="r-group-'+i+'" onclick="changeAnswer('+question.index+','+options[j].index+')"><label\n' +
+                        '                            for="q'+i+'_'+j+'">'+options[j].context+'</label>\n' +
                         '                    </li>\n';
                 }
                 html += '                </ul>\n' +
                     '                <div class="card_bottom">\n' ;
                 if(i == data.length -1){
                     html += '                    <a class="prev">上一题</a><span><b  id="mysubmit" style="color: #c733c5; cursor: pointer">提交</b></span>\n';
+                }else if(i == 0){
+                    html += '                    <span><b>'+(i*1.0+1)+'</b>/'+(i*1.0+2)+'</span>\n';
                 }else{
-                    html += '                    <a class="prev">上一题</a><span><b>'+i+'</b>/'+i+1+'</span>\n';
+                    html += '                    <a class="prev">上一题</a><span><b>'+(i*1.0+1)+'</b>/'+(i*1.0+2)+'</span>\n';
                 }
                 html += '                </div>\n' +
                     '            </div>\n' +
                     '        </div>'
             }
+            console.log(html);
            $("#answer").html(html);
+           $("#answer").answerSheet({});
+
+            $("#mysubmit").click(function () {
+                if (confirm("您确定要已经完成了吗？")) {
+                    var cdsid = getQueryVariable("cdsid");
+                    var answer = [];
+                    for(i = 0;i<questionNum;i++){
+                        answer[i] = answerResult[i+1];
+                    }
+
+                    window.location = "http://localhost:8081/peoplesrunning?cdsid=" + cdsid + "&answer=" + answer;
+                } else {
+                }
+            });
         });
+    }
+
+    function changeAnswer(questionIndex , answerIndex){
+        answerResult[questionIndex] = answerIndex;
+        console.log(answerResult);
     }
 </script>
 </body>

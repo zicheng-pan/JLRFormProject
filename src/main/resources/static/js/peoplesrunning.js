@@ -290,11 +290,13 @@ function connect() {
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/peoplesrunning', function (result) {
-            if (cdsids.length >= 30) {
-                cdsids.pop();
+            if (cdsids.indexOf(value) == -1) {
+                if (cdsids.length >= 30) {
+                    cdsids.pop();
+                }
+                cdsids.push(result.body);
+                initialize();
             }
-            cdsids.push(result.body);
-            initialize();
         });
     });
 }

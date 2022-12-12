@@ -52,7 +52,8 @@ new Vue({
             // 剩余未中奖人数
             surplusUsers: [],
             // 滚动定时器
-            luckyDrawTime: undefined
+            luckyDrawTime: undefined,
+            user_cache: []
         }
     },
     mounted() {
@@ -86,6 +87,8 @@ new Vue({
                 }
             })
         })
+
+        // setInterval(this.getUsers(this.users), 1000);
     },
     methods: {
         // 切换奖项
@@ -106,7 +109,12 @@ new Vue({
             this.isLuckyDraw = false
             this.numberPeople = undefined
             this.number += 1
+            users = this.users;
+            for (var i = 0; i < this.user_cache.length; i++) {
+                users.pop();
+            }
         },
+
 
         startLuckyDraw(prize) {
             if (this.tempNumber != this.number) {
@@ -144,6 +152,7 @@ new Vue({
             }
             // users = [];
             users = this.users;
+            user_cache = this.user_cache;
             $.ajax({
                 url: 'http://localhost:8081/user/priceRank',
                 type: 'get',
@@ -154,9 +163,10 @@ new Vue({
                         console.log(data[i].priceLevel)
                         console.log(prize)
                         if (data[i].priceLevel == prize) {
-                            console.log("matched "+prize)
-                            console.log("data:"+data[i])
+                            console.log("matched " + prize)
+                            console.log("data:" + data[i])
                             users.push(data[i])
+                            user_cache.push(data[i])
                         }
                     }
                 },

@@ -197,7 +197,7 @@ function startAnimate() {
     animateIndex++;
     animateTime = setTimeout(() => {
         this.startAnimate()
-    }, 6000);
+    }, 5000);
 }
 
 function stopAnimate(type) {

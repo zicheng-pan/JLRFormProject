@@ -20,9 +20,13 @@ public class PeoplesRunningController {
     public String setCountDownPageNumber(@RequestParam String cdsid, @RequestParam String answer) {
         System.out.println(cdsid);
         System.out.println(answer);
-        scoreService.calculateScore(cdsid,answer);
-        webSocketSender.addpeopleinrunning(cdsid);
-        return "finished";
+        try {
+            scoreService.calculateScore(cdsid, answer);
+        } finally {
+
+            webSocketSender.addpeopleinrunning(cdsid);
+            return "finished";
+        }
     }
 
 }

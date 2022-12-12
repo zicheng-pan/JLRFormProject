@@ -1,13 +1,4 @@
 var users = JSON.parse(localStorage.getItem('users')) || []
-console.log(users[0]);
-if (!users.length) {
-	users = [{
-		id: 0,
-		name: 'Test',
-		department: 'Dep',
-		number: 0
-	}]
-}
 
 var maxCount = 120
 var userPros = []

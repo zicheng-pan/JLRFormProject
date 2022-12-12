@@ -1,7 +1,7 @@
 create table user
 (
     id          bigint    default not null auto_increment,
-    csid        varchar(50) not null,
+    cdsid        varchar(50) not null,
     e_name      varchar(50) not null,
     c_name      varchar(50) not null,
     submit_time timestamp default null,

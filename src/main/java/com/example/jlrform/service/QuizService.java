@@ -10,6 +10,7 @@ import com.example.jlrform.entity.QuizOption;
 import com.example.jlrform.entity.User;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,18 +25,18 @@ public class QuizService {
     @Autowired
     private QuizOptionDao quizOptionDao;
 
-    public List<QuizDto> getAllQuestions(){
+    public List<QuizDto> getAllQuestions() {
         List<Quiz> quizs = getAllQuiz();
         List<QuizOption> quizOptions = getAllQuizOptions();
 
         List<QuizDto> quizResults = new ArrayList<>();
-        quizs.forEach(q ->{
+        quizs.forEach(q -> {
             QuizDto dto = new QuizDto();
             dto.setIndex(q.getIndex());
             dto.setContext(q.getContext());
             List<QuizOptionDto> options = new ArrayList<>();
             quizOptions.forEach(o -> {
-                if(o.getQuestionIndex().equals(q.getIndex())){
+                if (o.getQuestionIndex().equals(q.getIndex())) {
                     QuizOptionDto optionDto = new QuizOptionDto();
                     optionDto.setIndex(o.getIndex());
                     optionDto.setContext(o.getContext());
@@ -49,13 +50,18 @@ public class QuizService {
         return quizResults;
     }
 
-    private List<Quiz> getAllQuiz(){
+    private List<Quiz> getAllQuiz() {
         List<Quiz> quizs = new ArrayList<>();
         quizDao.findAll().forEach(q -> quizs.add(q));
         return quizs;
     }
 
-    private List<QuizOption> getAllQuizOptions(){
+    public List<QuizOption> getRightOptions() {
+        List<QuizOption> quizOptions = getAllQuizOptions();
+        return quizOptions.stream().filter(o -> o.getIsAnswer()).collect(Collectors.toList());
+    }
+
+    private List<QuizOption> getAllQuizOptions() {
         List<QuizOption> quizOptions = new ArrayList<>();
         quizOptionDao.findAll().forEach(q -> quizOptions.add(q));
         return quizOptions;

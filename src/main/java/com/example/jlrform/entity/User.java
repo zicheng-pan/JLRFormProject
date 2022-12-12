@@ -22,8 +22,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="csid")
-    private String csid;
+    @Column(name="cdsid")
+    private String cdsid;
     @Column(name="e_name")
     private String EName;
     @Column(name="c_name")
@@ -33,4 +33,15 @@ public class User {
     @Column(name="score")
     private Integer score;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", cdsid='" + cdsid + '\'' +
+                ", EName='" + EName + '\'' +
+                ", CName='" + CName + '\'' +
+                ", submitTime=" + submitTime.getTime() +
+                ", score=" + score +
+                '}';
+    }
 }

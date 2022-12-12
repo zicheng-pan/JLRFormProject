@@ -98,7 +98,7 @@ Desc: Countdown
 */
 function countdown() {
 
-    $.get("http://zicheng.info:8080/countdownnumber?number=" + countdownFrom, function (html) {
+    $.get("http://localhost:8081/countdownnumber?number=" + countdownFrom, function (html) {
         console.log(html);
     });
 
@@ -110,7 +110,7 @@ function countdown() {
         countdownRunning = false;
         // Now that countdowns finised show the text Go
         drawNumber('GO');
-        $.get("http://zicheng.info:8080/countdownnumber?number=" + "-1", function (html) {
+        $.get("http://localhost:8081/countdownnumber?number=" + "-1", function (html) {
             window.location = "peoplesrunning.html";
         });
     }

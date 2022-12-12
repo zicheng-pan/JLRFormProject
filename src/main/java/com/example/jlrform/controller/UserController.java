@@ -1,5 +1,6 @@
 package com.example.jlrform.controller;
 
+import com.example.jlrform.dto.UserDto;
 import com.example.jlrform.entity.User;
 import com.example.jlrform.service.UserService;
 import java.util.List;
@@ -28,10 +29,16 @@ public class UserController {
     @PostMapping("/user")
     public User saveUser(@RequestParam String eName
             ,@RequestParam String cName
-            ,@RequestParam String csid
+            ,@RequestParam String cdsid
             ,@RequestParam Boolean involved
             ,@RequestParam int score) {
 
-        return userService.saveUser(csid,eName,cName,involved,score);
+        return userService.saveUser(cdsid,eName,cName,involved,score);
+    }
+
+    @GetMapping("/user/rank")
+    public List<UserDto> getRank() {
+
+        return userService.getRank();
     }
 }

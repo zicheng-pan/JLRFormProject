@@ -31,8 +31,8 @@ public class ScoreService {
         String[] answers = answer.split(",");
         Integer score = 0;
         for (int i = 0; i < answers.length; i++) {
-            Integer ansIndex = Integer.getInteger(answers[i]);
-            QuizOption rightOption = quizAnswer.get(i);
+            Integer ansIndex = Integer.parseInt(answers[i]);
+            QuizOption rightOption = quizAnswer.get(i+1);
             if(rightOption.getIndex().equals(ansIndex)){
                 score ++ ;
             }

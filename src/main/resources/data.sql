@@ -8,19 +8,14 @@ insert into user(cdsid,e_name,c_name) values('test1','etest1','ctest1'),
                                             ('test8','test8','test8');
 
 insert into quiz(index, context)
-values (0, 'test0 question'),
-       (1, 'test1 question'),
+values (1, 'test1 question'),
        (2, 'test2 question'),
        (3, 'test3 question'),
        (4, 'test4 question'),
        (5, 'test5 question');
 
 insert into quiz_option(question_index, index, context, is_answer)
-values (0, 1, 'test0 option1', false),
-       (0, 2, 'test0 option2', false),
-       (0, 3, 'test0 option3', true),
-       (0, 4, 'test0 option4', false),
-       (1, 1, 'test1 option1', false),
+values (1, 1, 'test1 option1', false),
        (1, 2, 'test1 option2', false),
        (1, 3, 'test1 option3', true),
        (1, 4, 'test1 option4', false),

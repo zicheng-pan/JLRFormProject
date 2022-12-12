@@ -4,7 +4,6 @@ import com.example.jlrform.dto.UserDto;
 import com.example.jlrform.entity.User;
 import com.example.jlrform.service.UserService;
 import java.util.List;
-import javax.xml.ws.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +37,11 @@ public class UserController {
 
     @GetMapping("/user/rank")
     public List<UserDto> getRank() {
+        return userService.getAllRank();
+    }
 
-        return userService.getRank();
+    @GetMapping("/user/priceRank")
+    public List<UserDto> getPriceRank() {
+        return userService.getPriceRank();
     }
 }

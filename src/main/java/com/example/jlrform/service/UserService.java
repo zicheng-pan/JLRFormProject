@@ -4,11 +4,13 @@ import com.example.jlrform.dao.UserDao;
 import com.example.jlrform.dto.UserDto;
 import com.example.jlrform.entity.User;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,6 +20,11 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private UserDao userDao;
+
+    @Value("${price.all}")
+    private int allPriceNum;
+    @Value("${price.first}")
+    private int firstPriceNum;
 
     public List<User> getAllUsers(){
         List<User> users = new ArrayList<>();
@@ -43,10 +50,9 @@ public class UserService {
         return userDao.save(user);
     }
 
-    public List<UserDto> getRank(){
+    public List<UserDto> getAllRank(){
         List<User> users = getAllUsers();
         List<User> submiteduser = users.stream().filter(u ->u.getSubmitTime() != null).collect(Collectors.toList());
-        submiteduser.sort(Comparator.comparing(User::getScore).reversed().thenComparing(User::getSubmitTime).reversed());
 
         List<UserDto> userDtos = new ArrayList<>(submiteduser.size());
         for(int rank = 0 ; rank < submiteduser.size(); rank++){
@@ -61,6 +67,35 @@ public class UserService {
             userDtos.add(userDto);
         }
 
+        Collections.sort(userDtos, new UserDto.UserComparator());
         return userDtos;
+    }
+
+    public List<UserDto> getPriceRank(){
+        List<UserDto> userDtos = this.getAllRank();
+
+        Map<Integer,UserDto> rankUserMap = userDtos.stream().collect(Collectors.toMap(UserDto ::getRank,user ->user));
+
+        List<UserDto> results = new ArrayList<>();
+
+        if(firstPriceNum > allPriceNum){
+            throw new RuntimeException("Wrong properties: first price num is larger than all price num");
+        }
+
+        for(int i = 0;i<allPriceNum; i++){
+            UserDto user = rankUserMap.get(i+1);
+            if(user == null){
+                break;
+            }
+            if(i < firstPriceNum){
+                user.setPriceLevel(UserDto.PriceLevel.FIRST);
+            }else{
+                user.setPriceLevel(UserDto.PriceLevel.SECOND);
+            }
+
+            results.add(user);
+        }
+
+        return results;
     }
 }

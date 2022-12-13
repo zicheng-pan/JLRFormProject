@@ -6,9 +6,9 @@ new Vue({
       <div :class="isLuckyDraw ? 'lucky-draw-content lucky-draw-start' : 'lucky-draw-content'">
         <div :class="isLuckyDraw ? 'lucky-draw-users lucky-draw-users-start' : 'lucky-draw-users'">
           <div class="lucky-draw-user" v-for="item in users" :key="index">
-            <div class="lucky-draw-user-name">{{ item.name }}</div>
-            <div class="lucky-draw-user-department">{{ item.department }}</div>
-            <div class="lucky-draw-user-department">{{ item.department }}</div>
+            <div class="lucky-draw-user-name">{{ item.cdsid }}</div>
+            <div class="lucky-draw-user-department">{{ item.ename }}</div>
+            <div class="lucky-draw-user-department">{{ item.cname }}</div>
           </div>
           <div v-if="!users.length && !surplusUsers.length" class="ucky-draw-empty">老板大气，已经人人中奖了！</div>
         </div>
@@ -52,7 +52,8 @@ new Vue({
             // 剩余未中奖人数
             surplusUsers: [],
             // 滚动定时器
-            luckyDrawTime: undefined
+            luckyDrawTime: undefined,
+            user_cache: []
         }
     },
     mounted() {
@@ -86,6 +87,8 @@ new Vue({
                 }
             })
         })
+
+        // setInterval(this.getUsers(this.users), 1000);
     },
     methods: {
         // 切换奖项
@@ -94,21 +97,26 @@ new Vue({
             this.custom = e.data.attrs.item
         },
         yidengjiang() {
-            this.startLuckyDraw();
+            this.startLuckyDraw("FIRST");
             // this.stopLuckyDraw()
 
         },
         erdengjiang() {
-            alert(222);
+            this.startLuckyDraw("SECOND");
         },
         quxiao() {
             startAnimate();
             this.isLuckyDraw = false
             this.numberPeople = undefined
             this.number += 1
+            users = this.users;
+            for (var i = 0; i < this.user_cache.length; i++) {
+                users.pop();
+            }
         },
 
-        startLuckyDraw() {
+
+        startLuckyDraw(prize) {
             if (this.tempNumber != this.number) {
                 this.tempNumber = this.number
                 stopAnimate('sphere')
@@ -117,7 +125,7 @@ new Vue({
                 //   // this.GetUsers()
                 // }, 2000);
                 this.isLuckyDraw = true
-                this.infiniteCycle()
+                this.infiniteCycle(prize)
             }
         },
         // 停止抽奖
@@ -137,20 +145,29 @@ new Vue({
             }
         },
         // 循环名单
-        infiniteCycle() {
+        infiniteCycle(prize) {
             if (this.luckyDrawTime) {
                 clearInterval(this.luckyDrawTime)
                 this.luckyDrawTime = undefined
             }
+            // users = [];
             users = this.users;
+            user_cache = this.user_cache;
             $.ajax({
-                url: 'http://localhost:8081/firstResult',
+                url: 'http://zicheng.info:8080/user/priceRank',
                 type: 'get',
                 dataType: 'json',
                 success: function (data) {
-                    for (var i=0;i<data.length;i++) {
+                    for (var i = 0; i < data.length; i++) {
                         console.log(data[i])
-                        users.push(data[i])
+                        console.log(data[i].priceLevel)
+                        console.log(prize)
+                        if (data[i].priceLevel == prize) {
+                            console.log("matched " + prize)
+                            console.log("data:" + data[i])
+                            users.push(data[i])
+                            user_cache.push(data[i])
+                        }
                     }
                 },
                 error: function (xhr, errorType, error) {

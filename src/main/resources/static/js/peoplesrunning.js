@@ -196,14 +196,15 @@ const setupGui = () => {
         reset: () => initialize()
     };
 
-    gui.ctrls = {
-        timeScale: gui.add(gui.params, 'timeScale', 0.001, 0.01, 0.001),
-        number: gui.add(gui.params, 'number', 1, 500, 1)
-            .onChange(() => initialize()),
-        maxSize: gui.add(gui.params, 'maxSize', 50, 200, 1)
-            .onChange(() => initialize()),
-        reset: gui.add(gui.params, 'reset')
-    };
+
+    // gui.ctrls = {
+    //     // timeScale: gui.add(gui.params, 'timeScale', 0.001, 0.01, 0.001),
+    //     // number: gui.add(gui.params, 'number', 1, 500, 1)
+    //     //     .onChange(() => initialize()),
+    //     // maxSize: gui.add(gui.params, 'maxSize', 50, 200, 1)
+    //     //     .onChange(() => initialize()),
+    //     // reset: gui.add(gui.params, 'reset')
+    // };
 };
 
 const setupCanvas = () => {
@@ -289,13 +290,21 @@ function connect() {
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/peoplesrunning', function (result) {
-            cdsids.push(result.body);
-            initialize();
+            if (cdsids.indexOf(result.body) == -1) {
+                if (cdsids.length % 20 == 0) {
+                    cdsids.pop(5);
+                }
+                cdsids.push(result.body);
+                initialize();
+            }
         });
     });
 }
 
 connect();
+setInterval(function (){
+    cdsids.pop(1)
+},8000);
 (() => {
     window.addEventListener('DOMContentLoaded', () => {
         console.clear();

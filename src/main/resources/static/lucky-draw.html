@@ -9,24 +9,22 @@
 
 <script>
 
-    var users = [];
-    var user1 = {"name": "test", "department": "tttttttt"};
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    users.push(user1);
-    var userlist = JSON.stringify(users);
-    localStorage.setItem("users", userlist);
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('get', 'http://zicheng.info:8080/user/rank', true);
+
+    xhr.send(null);
+    var users = []
+    xhr.onload = function (data) {
+        console.log(xhr.responseText);
+        var lists = eval(xhr.responseText);
+        for (var i = 0; i < lists.length; i++) {
+            users.push(lists[i]);
+        }
+        console.log(JSON.stringify(users));
+        localStorage.setItem("users", JSON.stringify(users));
+    };
+
 
 </script>
 <!-- 渲染标签 -->

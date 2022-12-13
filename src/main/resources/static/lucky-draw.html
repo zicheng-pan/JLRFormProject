@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>奖品池</title>
+    <script src="js/hostname.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script>
+        var users = [];
+
+        $.ajaxSettings.async = false;
+        $.get(serverhost + '/user/priceRank', function (data) {
+            localStorage.removeItem("users");
+            var lists = eval(data);
+            for (var i = 0; i < lists.length; i++) {
+                users.push(lists[i]);
+            }
+            console.log(JSON.stringify(users));
+            localStorage.setItem("users", JSON.stringify(users));
+        });
+        $.ajaxSettings.async = true;
+
+    </script>
 </head>
 <body>
 <!-- 渲染标签 -->
@@ -16,9 +34,7 @@
 <script src="./lib/animation-plug/CSS3DRenderer.js"></script>
 <script src="./js/lucky-draw-animation.js"></script>
 <link rel="stylesheet" href="./css/lucky-draw-animation.css">
-<script src="js/jquery-1.8.3.min.js"></script>
 
-<script src="js/hostname.js"></script>
 <!-- Vue -->
 <script src="./lib/vue.min.js"></script>
 
@@ -34,27 +50,10 @@
 
 <!-- Vue 渲染组件 -->
 <div id="app"></div>
-<script>
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.open('get', serverhost + '/user/rank', true);
-
-    xhr.send(null);
-    var users = []
-    xhr.onload = function (data) {
-        console.log(xhr.responseText);
-        var lists = eval(xhr.responseText);
-        for (var i = 0; i < lists.length; i++) {
-            users.push(lists[i]);
-        }
-        console.log(JSON.stringify(users));
-        localStorage.setItem("users", JSON.stringify(users));
-    };
-
-
-</script><!-- Vue UI -->
+<!-- Vue UI -->
 <script src="./js/lucky-draw.js"></script>
 <link rel="stylesheet" href="./css/lucky-draw.css">
+<script>
+</script>
 </body>
 </html>

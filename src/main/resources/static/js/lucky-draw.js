@@ -101,11 +101,15 @@ new Vue({
         },
         yidengjiang() {
             this.startLuckyDraw("FIRST");
+            var audioDOM = new Audio("../mp3/banjiang.mp3");
+            audioDOM.play();
             // this.stopLuckyDraw()
 
         },
         erdengjiang() {
             this.startLuckyDraw("SECOND");
+            var audioDOM = new Audio("../mp3/banjiang.mp3");
+            audioDOM.play();
         },
         quxiao() {
             startAnimate();

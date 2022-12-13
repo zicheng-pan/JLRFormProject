@@ -1,1 +1,1 @@
-var serverhost = "https://exam.cross-env.cloudcar.oneiotworld.com/";
+var serverhost = "https://exam.cross-env.cloudcar.oneiotworld.com";

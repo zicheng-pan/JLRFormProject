@@ -17,14 +17,17 @@ new Vue({
       <div class="lucky-draw-tool-left">
   
         <a-button @click="yidengjiang">
-          一等奖
+          First Price
         </a-button>
         <!-- 抽奖按钮 -->
         <a-button @click="erdengjiang">
-          二等奖
+          Second Price
         </a-button>
         <a-button @click="quxiao">
-          取消
+          Cancel
+        </a-button>
+        <a-button @click="finalthank">
+          Final Thank
         </a-button>
       </div>
     </div>
@@ -115,6 +118,9 @@ new Vue({
             }
         },
 
+        finalthank() {
+            window.location.href = 'finalThank.html'
+        },
 
         startLuckyDraw(prize) {
             if (this.tempNumber != this.number) {

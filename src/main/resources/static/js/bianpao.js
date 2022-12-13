@@ -3,6 +3,11 @@ $(function () {
     var f = $(".bp-line");
     var q = $(".bp-couplet-wrap");
     $(".dear-joy").bind("click", function () {
+
+        var audioDOM = document.createElement('audio');
+        audioDOM.src = "../mp3/bianpaosheng.mp3";
+        audioDOM.play();
+
         $(this).removeClass("jump").addClass("dian");
         setTimeout(function () {
             f.trigger("bang")
@@ -13,11 +18,8 @@ $(function () {
         var w = $(this).find(".bp-item");
         console.log(w.length)
         w.each(function (y, z) {
-        console.log("--")
-            console.log(z)
-            console.log(y)
             setTimeout(function () {
-                if (y == 2){
+                if (y == 2) {
                     var xhr = new XMLHttpRequest();
 
                     xhr.open('get', serverhost + '/user/rank', true);
@@ -34,7 +36,7 @@ $(function () {
                         localStorage.setItem("users", JSON.stringify(users));
                     };
                 }
-                if (y == 0){
+                if (y == 0) {
                     jump();
                 }
                 $(z).addClass("on hold-forwards bp-fly")
@@ -980,7 +982,6 @@ strVar += "									<div class=\"bang bang1\">\n";
 strVar += "									<\/div>\n";
 strVar += "								<\/div>\n";
 strVar += "							<\/div>\n";
-
 
 
 strVar += "						<\/div>\n";

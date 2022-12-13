@@ -7,7 +7,6 @@ $(function () {
         setTimeout(function () {
             f.trigger("bang")
         }, 500);
-        alert(1);
         $(".dear-joy2").addClass("fadeIn")
     });
     f.bind("bang", function () {

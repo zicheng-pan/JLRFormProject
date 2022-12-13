@@ -276,8 +276,9 @@ const drawwithcatch = (drawerids,runners) => {
             runners.push(runnercache[drawerids[i]]);
         } else {
             const x = width * Math.random();
-            const y = height * Math.random() * Math.random();
-
+            const y = Math.max(height * Math.random() * Math.random(),50);
+            console.log(x)
+            console.log(y)
             const rand = Math.max(Math.random(), 0.3);
 
             const s = y / height;
@@ -358,16 +359,16 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/peoplesrunning', function (result) {
             if (cdsids.indexOf(result.body) == -1) {
+                if (cdsids.length>=25){
+                    var id = runnershoulddelete.shift();
+                    delete runnercache[id];
+                }
                 if (cdsids.length >= 15) {
                     for (let i = 0; i < 5; i++) {
                         var id = cdsids.shift();
                         // delete runnercache[id];
                         runnershoulddelete.push(id);
                     }
-                }
-                if (cdsids.length>=20){
-                    var id = runnershoulddelete.shift();
-                    delete runnercache[id];
                 }
                 cdsids.push(result.body);
                 initialize();

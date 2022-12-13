@@ -265,7 +265,7 @@ const setupCanvas = () => {
 };
 
 
-const drawwithcatch = (drawerids,runners) => {
+const drawwithcatch = (drawerids, runners) => {
 
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
@@ -276,7 +276,7 @@ const drawwithcatch = (drawerids,runners) => {
             runners.push(runnercache[drawerids[i]]);
         } else {
             const x = width * Math.random();
-            const y = Math.max(height * Math.random() * Math.random(),50);
+            const y = Math.max(height * Math.random() * Math.random(), 50);
             console.log(x)
             console.log(y)
             const rand = Math.max(Math.random(), 0.3);
@@ -320,8 +320,8 @@ const initialize = () => {
         cancelAnimationFrame(id);
     }
     runners = [];
-    drawwithcatch(cdsids,runners);
-    drawwithcatch(runnershoulddelete,runners);
+    drawwithcatch(cdsids, runners);
+    drawwithcatch(runnershoulddelete, runners);
 
     draw(0);
 };
@@ -333,7 +333,7 @@ const draw = (t) => {
     c.save();
     c.clearRect(0, 0, width, height);
 
-    var flag=false;
+    var flag = false;
     for (let j = 0; j < runners.length; j++) {
         for (let i = 0; i < runners[j].length; i++) {
             runners[j][i].render(c, t);
@@ -346,7 +346,7 @@ const draw = (t) => {
     c.restore();
 
     id = requestAnimationFrame(draw);
-    if (flag){
+    if (flag) {
         initialize();
     }
 };
@@ -359,12 +359,14 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/peoplesrunning', function (result) {
             if (cdsids.indexOf(result.body) == -1) {
-                if (cdsids.length>=25){
-                    var id = runnershoulddelete.shift();
-                    delete runnercache[id];
+                if (cdsids.length >= 25) {
+                    for (let i = 0; i < 5 && i < runnershoulddelete.length; i++) {
+                        var id = runnershoulddelete.shift();
+                        delete runnercache[id];
+                    }
                 }
                 if (cdsids.length >= 15) {
-                    for (let i = 0; i < 5; i++) {
+                    for (let i = 0; i < 10; i++) {
                         var id = cdsids.shift();
                         // delete runnercache[id];
                         runnershoulddelete.push(id);

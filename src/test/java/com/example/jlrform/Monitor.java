@@ -201,7 +201,7 @@ public class Monitor {
 
         for (int i = 0; i < hashMaps.size(); i++) {
 
-            String url = "http://zicheng.info:8080/peoplesrunning?cdsid={{cdsid}}&answer={{answer}}";
+            String url = "http://localhost:8080/peoplesrunning?cdsid={{cdsid}}&answer={{answer}}";
             System.out.println(hashMaps.get(i).get("cdsid"));
             System.out.println(hashMaps.get(i).get("answer"));
             url = url.replace("{{cdsid}}", (String) hashMaps.get(i).get("cdsid"));

@@ -21,7 +21,7 @@ $(function () {
                     jump();
                 }
                 $(z).addClass("on hold-forwards bp-fly")
-            }, (w.length - y + 4) * 7000)
+            }, (w.length - y + 4) * 70)
         });
     });
 })

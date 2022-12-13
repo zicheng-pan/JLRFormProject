@@ -1,6 +1,7 @@
 let gui, canvas, c, width, height, id, fks, runners;
 
 let cdsids = [];
+let runnercache = {};
 
 function random(min, max) {
 
@@ -224,6 +225,12 @@ const initialize = () => {
     runners = [];
 
     for (let i = 0; i < cdsids.length; i++) {
+
+        if (runnercache.hasOwnProperty(cdsids[i])) {
+            runners.push(runnercache[cdsids[i]]);
+            continue;
+        }
+
         const x = width * Math.random();
         const y = height * Math.random() * Math.random();
 
@@ -256,8 +263,9 @@ const initialize = () => {
             left.addArm(gui.params.maxSize * s, Math.PI / 2, Math.PI / 4, 0, s, i);
             left.addArm(gui.params.maxSize * s, 0.87, 0.87, -1.5, s, i);
         }
-
-        runners.push([right, left]);
+        var temp = [right, left];
+        runners.push(temp);
+        runnercache[cdsids[i]] = temp;
     }
 
     draw(0);
@@ -293,7 +301,8 @@ function connect() {
             if (cdsids.indexOf(result.body) == -1) {
                 if (cdsids.length >= 20) {
                     for (let i = 0; i < 5; i++) {
-                        cdsids.pop();
+                        var id = cdsids.pop();
+                        delete runnercache[id];
                     }
                 }
                 cdsids.push(result.body);

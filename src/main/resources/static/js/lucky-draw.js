@@ -6,9 +6,9 @@ new Vue({
       <div :class="isLuckyDraw ? 'lucky-draw-content lucky-draw-start' : 'lucky-draw-content'">
         <div :class="isLuckyDraw ? 'lucky-draw-users lucky-draw-users-start' : 'lucky-draw-users'">
           <div class="lucky-draw-user" v-for="item in users" :key="index">
-            <div class="lucky-draw-user-name">{{ item.cdsid }}</div>
-            <div class="lucky-draw-user-department">{{ item.ename }}</div>
+            <div class="lucky-draw-user-name">{{ item.ename }}</div>
             <div class="lucky-draw-user-department">{{ item.cname }}</div>
+            <div class="lucky-draw-user-department">{{ item.cdsid }}</div>
           </div>
           <div v-if="!users.length && !surplusUsers.length" class="ucky-draw-empty">Still no finished yet</div>
         </div>

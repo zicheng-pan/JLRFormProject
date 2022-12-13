@@ -49,19 +49,14 @@ function init() {
 
         var symbol = document.createElement('div');
         symbol.className = 'symbol';
-        symbol.textContent = user.cdsid;
+        symbol.textContent = user.ename;
         element.appendChild(symbol);
 
-        var ename = document.createElement('div');
-		ename.className = 'details';
-        console.log(user.ename);
-		ename.textContent = user.ename;
-        element.appendChild(ename);
-
-		var cname = document.createElement('div');
+        var cname = document.createElement('div');
 		cname.className = 'details';
-		cname.textContent = user.cname;
-		element.appendChild(cname);
+        console.log(user.cname);
+        cname.textContent = user.cname;
+        element.appendChild(cname);
 
         var object = new THREE.CSS3DObject(element);
         object.position.x = Math.random() * 4000 - 2000;

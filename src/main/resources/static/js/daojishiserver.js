@@ -16,7 +16,7 @@ var numberStage,
     stageCenterY = stageHeight / 2,
 
     countdownFrom = 10,
-    countdownTimer = 2000,
+    countdownTimer = 4000,
     // 20s 是5个数，平均一个数4s最后还有一个GO
     countdownRunning = true,
 

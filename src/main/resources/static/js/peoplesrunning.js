@@ -2,6 +2,7 @@ let gui, canvas, c, width, height, id, fks, runners;
 
 let cdsids = [];
 let runnercache = {};
+let runnershoulddelete = [];
 
 function random(min, max) {
 
@@ -112,11 +113,11 @@ class Arm {
 }
 
 class FKSystem {
-    constructor(x, y, v, rand) {
-        this.initialize(x, y, v, rand);
+    constructor(x, y, v, rand, cdsid) {
+        this.initialize(x, y, v, rand, cdsid);
     }
 
-    initialize(x, y, v, rand) {
+    initialize(x, y, v, rand, cdsid) {
         this.x = x;
         this.y = y;
         this.v = v;
@@ -124,13 +125,14 @@ class FKSystem {
         this.phase = 0;
         this.speed = 0.2 * rand + 0.1;
         this.arms = [];
+        this.cdsid = cdsid;
     }
 
-    addArm(length, centerAngle, rotationRange, phaseOffset, scale, index) {
+    addArm(length, centerAngle, rotationRange, phaseOffset, scale, cdsid) {
         const a = new Arm();
         const arm = a.create(length, centerAngle, rotationRange, phaseOffset, scale);
         // console.log(index)
-        arm.cdsid = cdsids[index];
+        arm.cdsid = cdsid;
         // console.log(cdsids[index])
         // console.log(this.cdsid)
         this.arms.push(arm);
@@ -159,18 +161,59 @@ class FKSystem {
         }
 
         this.phase += this.speed;
+        //
+        // var flag = false;
+        // if (this.arms[0].x > window.innerWidth + 100) {
+        //     var index = runnershoulddelete.indexOf(this.cdsid);
+        //     if (index >= 0) {
+        //         runnershoulddelete.splice(index, 1);
+        //         removeArrayElement(cdsids, this.cdsid);
+        //         delete runnercache[this.cdsid];
+        //         flag = true;
+        //     }
+        // }
+        //
+        // if (this.arms[0].x < 0 - 100) {
+        //     var index = runnershoulddelete.indexOf(this.cdsid);
+        //     if (index >= 0) {
+        //         runnershoulddelete.splice(index, 1);
+        //         removeArrayElement(cdsids, this.cdsid);
+        //         delete runnercache[this.cdsid];
+        //         flag = true;
+        //     }
+        // }
+        //
+        // if (flag) {
+        //     initialize();
+        // }
     }
 
     updatePosition() {
+        var flag = false;
         this.x += this.v;
-
         if (this.x > window.innerWidth + 100) {
             this.x = 0 - 100;
+
+            var index = runnershoulddelete.indexOf(this.cdsid);
+            if (index >= 0) {
+                runnershoulddelete.splice(index, 1);
+                removeArrayElement(cdsids, this.cdsid);
+                delete runnercache[this.cdsid];
+                flag = true;
+            }
         }
 
         if (this.x < 0 - 100) {
             this.x = window.innerWidth + 100;
+            var index = runnershoulddelete.indexOf(this.cdsid);
+            if (index >= 0) {
+                runnershoulddelete.splice(index, 1);
+                removeArrayElement(cdsids, this.cdsid);
+                delete runnercache[this.cdsid];
+                flag = true;
+            }
         }
+        return flag;
     }
 
     render(c, t) {
@@ -182,6 +225,13 @@ class FKSystem {
 
     rotateArm(index, angle) {
         this.arms[index].angle = angle;
+    }
+}
+
+const removeArrayElement = (array, e) => {
+    var index = array.indexOf(e);
+    if (index >= 0) {
+        array.splice(index, 1);
     }
 }
 
@@ -214,62 +264,67 @@ const setupCanvas = () => {
     c = canvas.getContext('2d');
 };
 
-const initialize = () => {
-    if (id) {
-        cancelAnimationFrame(id);
-    }
+
+const drawwithcatch = (drawerids,runners) => {
 
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
 
-    runners = [];
+    for (let i = 0; i < drawerids.length; i++) {
 
-    for (let i = 0; i < cdsids.length; i++) {
-
-        if (runnercache.hasOwnProperty(cdsids[i])) {
-            runners.push(runnercache[cdsids[i]]);
-            continue;
-        }
-
-        const x = width * Math.random();
-        const y = height * Math.random() * Math.random();
-
-        const rand = Math.max(Math.random(), 0.3);
-
-        const s = y / height;
-
-        let v = 10;
-
-        if (Math.random() < 0.5) {
-            v *= -1;
-        }
-
-        const right = new FKSystem(x, y, v * s, rand * s);
-        const left = new FKSystem(x, y, v * s, rand * s);
-
-        left.phase = Math.PI;
-
-        if (v < 0) {
-            // length, center angle, rotation angle, phase offset, scale
-            right.addArm(gui.params.maxSize * s, Math.PI / 2, Math.PI / 4, 0, s, i);
-            right.addArm(gui.params.maxSize * s, -0.87, 0.87, -1.5, s, i);
-
-            left.addArm(gui.params.maxSize * s, Math.PI / 2, Math.PI / 4, 0, s, i);
-            left.addArm(gui.params.maxSize * s, -0.87, 0.87, -1.5, s, i);
+        if (runnercache.hasOwnProperty(drawerids[i])) {
+            runners.push(runnercache[drawerids[i]]);
         } else {
-            right.addArm(gui.params.maxSize * s, Math.PI / 2, Math.PI / 4, 0, s, i);
-            right.addArm(gui.params.maxSize * s, 0.87, 0.87, -1.5, s, i);
+            const x = width * Math.random();
+            const y = height * Math.random() * Math.random();
 
-            left.addArm(gui.params.maxSize * s, Math.PI / 2, Math.PI / 4, 0, s, i);
-            left.addArm(gui.params.maxSize * s, 0.87, 0.87, -1.5, s, i);
+            const rand = Math.max(Math.random(), 0.3);
+
+            const s = y / height;
+
+            let v = 10;
+
+            if (Math.random() < 0.5) {
+                v *= -1;
+            }
+
+            const right = new FKSystem(x, y, v * s, rand * s, drawerids[i]);
+            const left = new FKSystem(x, y, v * s, rand * s, drawerids[i]);
+
+            left.phase = Math.PI;
+
+            if (v < 0) {
+                // length, center angle, rotation angle, phase offset, scale
+                right.addArm(gui.params.maxSize * s, Math.PI / 2, Math.PI / 4, 0, s, drawerids[i]);
+                right.addArm(gui.params.maxSize * s, -0.87, 0.87, -1.5, s, drawerids[i]);
+
+                left.addArm(gui.params.maxSize * s, Math.PI / 2, Math.PI / 4, 0, s, drawerids[i]);
+                left.addArm(gui.params.maxSize * s, -0.87, 0.87, -1.5, s, drawerids[i]);
+            } else {
+                right.addArm(gui.params.maxSize * s, Math.PI / 2, Math.PI / 4, 0, s, drawerids[i]);
+                right.addArm(gui.params.maxSize * s, 0.87, 0.87, -1.5, s, drawerids[i]);
+
+                left.addArm(gui.params.maxSize * s, Math.PI / 2, Math.PI / 4, 0, s, drawerids[i]);
+                left.addArm(gui.params.maxSize * s, 0.87, 0.87, -1.5, s, drawerids[i]);
+            }
+            var temp = [right, left];
+            runners.push(temp);
+            runnercache[drawerids[i]] = temp;
         }
-        var temp = [right, left];
-        runners.push(temp);
-        runnercache[cdsids[i]] = temp;
     }
+};
+
+const initialize = () => {
+    if (id) {
+        cancelAnimationFrame(id);
+    }
+    runners = [];
+    drawwithcatch(cdsids,runners);
+    drawwithcatch(runnershoulddelete,runners);
 
     draw(0);
 };
+
 
 const draw = (t) => {
     t *= gui.params.timeScale;
@@ -277,18 +332,22 @@ const draw = (t) => {
     c.save();
     c.clearRect(0, 0, width, height);
 
+    var flag=false;
     for (let j = 0; j < runners.length; j++) {
         for (let i = 0; i < runners[j].length; i++) {
             runners[j][i].render(c, t);
 
             runners[j][i].update();
-            runners[j][i].updatePosition();
+            flag = flag || runners[j][i].updatePosition();
         }
     }
 
     c.restore();
 
     id = requestAnimationFrame(draw);
+    if (flag){
+        initialize();
+    }
 };
 
 function connect() {
@@ -299,11 +358,16 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/peoplesrunning', function (result) {
             if (cdsids.indexOf(result.body) == -1) {
-                if (cdsids.length >= 20) {
+                if (cdsids.length >= 15) {
                     for (let i = 0; i < 5; i++) {
-                        var id = cdsids.pop();
-                        delete runnercache[id];
+                        var id = cdsids.shift();
+                        // delete runnercache[id];
+                        runnershoulddelete.push(id);
                     }
+                }
+                if (cdsids.length>=20){
+                    var id = runnershoulddelete.shift();
+                    delete runnercache[id];
                 }
                 cdsids.push(result.body);
                 initialize();

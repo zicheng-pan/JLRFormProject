@@ -25,6 +25,11 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/user/cdsid")
+    public User getUserByCdsid(@RequestParam String cdsid) {
+        return userService.getUserByCDSId(cdsid);
+    }
+
     @PostMapping("/user")
     public User saveUser(@RequestParam String eName
             ,@RequestParam String cName

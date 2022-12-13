@@ -33,7 +33,7 @@ public class UserService {
     }
 
     public User getUserByCDSId(String cdsid){
-        return userDao.findByCdsid(cdsid);
+        return userDao.findByCdsid(cdsid.toLowerCase());
     }
 
     public User saveUser(String cdsid,String eName,String cName,Boolean involved,int score){

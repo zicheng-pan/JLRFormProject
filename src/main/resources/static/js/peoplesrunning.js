@@ -291,8 +291,10 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/peoplesrunning', function (result) {
             if (cdsids.indexOf(result.body) == -1) {
-                if (cdsids.length % 20 == 0) {
-                    cdsids.pop(5);
+                if (cdsids.length >= 20) {
+                    for (let i = 0; i < 5; i++) {
+                        cdsids.pop();
+                    }
                 }
                 cdsids.push(result.body);
                 initialize();
@@ -302,9 +304,9 @@ function connect() {
 }
 
 connect();
-setInterval(function (){
-    cdsids.pop(1)
-},8000);
+// setInterval(function (){
+//     cdsids.pop(1)
+// },8000);
 (() => {
     window.addEventListener('DOMContentLoaded', () => {
         console.clear();

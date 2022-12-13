@@ -3,6 +3,8 @@ let gui, canvas, c, width, height, id, fks, runners;
 let cdsids = [];
 let runnercache = {};
 let runnershoulddelete = [];
+let contentMap = {};
+let contentTemplate = ["∧,,∧", "∩ ∩", "(╥﹏╥)", "(⊙﹏⊙)", "/≥﹏≤\\", "(o'.'o)", "(-'.'-)"];
 
 function random(min, max) {
 
@@ -96,11 +98,28 @@ class Arm {
             c.restore();
             let color = random(0, 255);
             c.fillStyle = 'rgb(' + color + ',' +
-                (255 - color) + ',' + (255 - color) + ')';
-            c.font = Math.pow(Math.log(this.y), 2) + "px serif";
+                (255 - color) + ',' + 255 + ')';
+            let fontheight = Math.pow(Math.log(this.y), 2);
+            c.font = fontheight + "px serif";
             // console.log("#####");
             // console.log(this.cdsid);
-            c.fillText("我的ID:" + this.cdsid, this.x + 50 * this.scale, this.y);
+            let content = "ID:" + this.cdsid;
+            if (contentMap.hasOwnProperty(this.cdsid)) {
+                content = content + contentMap[this.cdsid];
+            } else {
+                let randomData = contentTemplate[random(0, contentTemplate.length)];
+                content = content + randomData;
+                contentMap[this.cdsid] = randomData;
+            }
+            let contentline = "";
+            for (let j = 0; j < content.length; j++) {
+                contentline = contentline + "-";
+            }
+            let x_position = this.x + 50 * this.scale;
+
+            c.fillText(contentline, x_position, this.y - fontheight)
+            c.fillText("|" + content + "|", x_position, this.y);
+            c.fillText(contentline, x_position, this.y + fontheight)
 
         }
 
@@ -175,8 +194,7 @@ class FKSystem {
                 removeArrayElement(cdsids, this.cdsid);
                 delete runnercache[this.cdsid];
                 flag = true;
-            }
-            else{
+            } else {
                 this.x = 0 - 10;
             }
         }
@@ -189,8 +207,7 @@ class FKSystem {
                 removeArrayElement(cdsids, this.cdsid);
                 delete runnercache[this.cdsid];
                 flag = true;
-            }
-            else{
+            } else {
                 this.x = window.innerWidth + 10;
             }
         }

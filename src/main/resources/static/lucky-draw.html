@@ -6,27 +6,6 @@
     <title>奖品池</title>
 </head>
 <body>
-
-<script>
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.open('get', serverhost + '/user/rank', true);
-
-    xhr.send(null);
-    var users = []
-    xhr.onload = function (data) {
-        console.log(xhr.responseText);
-        var lists = eval(xhr.responseText);
-        for (var i = 0; i < lists.length; i++) {
-            users.push(lists[i]);
-        }
-        console.log(JSON.stringify(users));
-        localStorage.setItem("users", JSON.stringify(users));
-    };
-
-
-</script>
 <!-- 渲染标签 -->
 <div id="container"></div>
 
@@ -55,8 +34,26 @@
 
 <!-- Vue 渲染组件 -->
 <div id="app"></div>
+<script>
 
-<!-- Vue UI -->
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('get', serverhost + '/user/rank', true);
+
+    xhr.send(null);
+    var users = []
+    xhr.onload = function (data) {
+        console.log(xhr.responseText);
+        var lists = eval(xhr.responseText);
+        for (var i = 0; i < lists.length; i++) {
+            users.push(lists[i]);
+        }
+        console.log(JSON.stringify(users));
+        localStorage.setItem("users", JSON.stringify(users));
+    };
+
+
+</script><!-- Vue UI -->
 <script src="./js/lucky-draw.js"></script>
 <link rel="stylesheet" href="./css/lucky-draw.css">
 </body>

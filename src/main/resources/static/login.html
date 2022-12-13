@@ -180,7 +180,7 @@
             if (data) {
                 window.localStorage.setItem("cdsid", value);
                 // alert(value);
-                window.location.href = "daojishiclient.html?cdsid=" + value;
+                window.location.replace("daojishiclient.html?cdsid=" + value);
             } else {
                 alert("Wrong CDSId");
             }

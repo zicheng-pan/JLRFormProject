@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/hostname.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css"/><!--CSS RESET-->
     <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css"><!--演示页面样式，使用时可以不引用-->
@@ -175,13 +176,13 @@
         var value = document.getElementById("user_cdsid").value;
         console.log(value);
 
-        $.get("http://localhost:8081/user/cdsid?cdsid="+value, function (data) {
+        $.get(serverhost + "/user/cdsid?cdsid=" + value, function (data) {
             console.log(data);
-            if(data){
+            if (data) {
                 window.localStorage.setItem("cdsid", value);
                 // alert(value);
                 window.location.href = "daojishiclient.html?cdsid=" + value;
-            } else{
+            } else {
                 alert("Wrong CDSId");
             }
         })

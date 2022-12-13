@@ -43,68 +43,68 @@
         return (false);
     }
 
-    function getAllQuestions(){
-        $.get("http://zicheng.info:8080/quiz/all", function (data) {
+    function getAllQuestions() {
+        $.get(serverhost + "/quiz/all", function (data) {
             console.log(data);
             questionNum = data.length;
             var html = '';
-            for(i = 0;i<data.length;i++){
+            for (i = 0; i < data.length; i++) {
                 var question = data[i];
                 var options = question.options;
 
-                answerResult['q'+question.index] = 1;
+                answerResult['q' + question.index] = 1;
 
-                var cardNum = 'card'+(i+1);
-                if((i+1) >3){
+                var cardNum = 'card' + (i + 1);
+                if ((i + 1) > 3) {
                     cardNum = '';
                 }
 
-                html += '<div class="card_cont '+cardNum+'">\n' +
+                html += '<div class="card_cont ' + cardNum + '">\n' +
                     '            <div class="card">\n' +
                     '                <p class="question">\n' +
-                    '                    <span>Q'+question.index+'、</span>'+question.context+'\n' +
+                    '                    <span>Q' + question.index + '、</span>' + question.context + '\n' +
                     '                </p>\n' +
                     '                <ul class="select">\n';
-                for(j = 0;j<options.length;j++){
+                for (j = 0; j < options.length; j++) {
                     html += '                    <li>\n' +
-                        '                        <input id="q'+i+'_'+j+'" type="radio" name="r-group-'+i+'" onclick="changeAnswer('+question.index+','+options[j].index+')"><label\n' +
-                        '                            for="q'+i+'_'+j+'">'+options[j].context+'</label>\n' +
+                        '                        <input id="q' + i + '_' + j + '" type="radio" name="r-group-' + i + '" onclick="changeAnswer(' + question.index + ',' + options[j].index + ')"><label\n' +
+                        '                            for="q' + i + '_' + j + '">' + options[j].context + '</label>\n' +
                         '                    </li>\n';
                 }
                 html += '                </ul>\n' +
-                    '                <div class="card_bottom">\n' ;
-                if(i == data.length -1){
+                    '                <div class="card_bottom">\n';
+                if (i == data.length - 1) {
                     html += '                    <a class="prev">上一题</a><span><b  id="mysubmit" style="color: #c733c5; cursor: pointer">提交</b></span>\n';
-                }else if(i == 0){
-                    html += '                    <span><b>'+(i*1.0+1)+'</b>/'+(i*1.0+2)+'</span>\n';
-                }else{
-                    html += '                    <a class="prev">上一题</a><span><b>'+(i*1.0+1)+'</b>/'+(i*1.0+2)+'</span>\n';
+                } else if (i == 0) {
+                    html += '                    <span><b>' + (i * 1.0 + 1) + '</b>/' + (i * 1.0 + 2) + '</span>\n';
+                } else {
+                    html += '                    <a class="prev">上一题</a><span><b>' + (i * 1.0 + 1) + '</b>/' + (i * 1.0 + 2) + '</span>\n';
                 }
                 html += '                </div>\n' +
                     '            </div>\n' +
                     '        </div>'
             }
             console.log(html);
-           $("#answer").html(html);
-           $("#answer").answerSheet({});
+            $("#answer").html(html);
+            $("#answer").answerSheet({});
 
             $("#mysubmit").click(function () {
                 if (confirm("您确定要已经完成了吗？")) {
                     var cdsid = getQueryVariable("cdsid");
                     var answer = [];
-                    for(i = 0;i<questionNum;i++){
-                        answer[i] = answerResult['q'+(i*1.0 + 1)];
+                    for (i = 0; i < questionNum; i++) {
+                        answer[i] = answerResult['q' + (i * 1.0 + 1)];
                     }
 
-                    window.location = "http://zicheng.info:8080/peoplesrunning?cdsid=" + cdsid + "&answer=" + answer;
+                    window.location = serverhost + "/peoplesrunning?cdsid=" + cdsid + "&answer=" + answer;
                 } else {
                 }
             });
         });
     }
 
-    function changeAnswer(questionIndex , answerIndex){
-        answerResult['q'+questionIndex] = answerIndex;
+    function changeAnswer(questionIndex, answerIndex) {
+        answerResult['q' + questionIndex] = answerIndex;
         console.log(answerResult);
     }
 </script>

@@ -154,7 +154,7 @@ new Vue({
             users = this.users;
             user_cache = this.user_cache;
             $.ajax({
-                url: 'http://zicheng.info:8080/user/priceRank',
+                url: serverhost + '/user/priceRank',
                 type: 'get',
                 dataType: 'json',
                 success: function (data) {

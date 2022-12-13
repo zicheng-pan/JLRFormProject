@@ -11,7 +11,7 @@
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open('get', 'http://zicheng.info:8080/user/rank', true);
+    xhr.open('get', serverhost + '/user/rank', true);
 
     xhr.send(null);
     var users = []
@@ -39,7 +39,7 @@
 <link rel="stylesheet" href="./css/lucky-draw-animation.css">
 <script src="js/jquery-1.8.3.min.js"></script>
 
-
+<script src="js/hostname.js"></script>
 <!-- Vue -->
 <script src="./lib/vue.min.js"></script>
 

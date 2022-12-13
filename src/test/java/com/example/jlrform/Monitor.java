@@ -232,8 +232,8 @@ public class Monitor {
             //打印结果
             System.out.println(response.toString());
 
-            if (i % 10 == 0){
-                Thread.sleep(5000);
+            if (i % 1 == 0){
+                Thread.sleep(3000);
             }
         }
 

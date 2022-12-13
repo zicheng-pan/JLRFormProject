@@ -161,38 +161,13 @@ class FKSystem {
         }
 
         this.phase += this.speed;
-        //
-        // var flag = false;
-        // if (this.arms[0].x > window.innerWidth + 100) {
-        //     var index = runnershoulddelete.indexOf(this.cdsid);
-        //     if (index >= 0) {
-        //         runnershoulddelete.splice(index, 1);
-        //         removeArrayElement(cdsids, this.cdsid);
-        //         delete runnercache[this.cdsid];
-        //         flag = true;
-        //     }
-        // }
-        //
-        // if (this.arms[0].x < 0 - 100) {
-        //     var index = runnershoulddelete.indexOf(this.cdsid);
-        //     if (index >= 0) {
-        //         runnershoulddelete.splice(index, 1);
-        //         removeArrayElement(cdsids, this.cdsid);
-        //         delete runnercache[this.cdsid];
-        //         flag = true;
-        //     }
-        // }
-        //
-        // if (flag) {
-        //     initialize();
-        // }
     }
 
     updatePosition() {
         var flag = false;
         this.x += this.v;
-        if (this.x > window.innerWidth + 100) {
-            this.x = 0 - 100;
+        if (this.x > window.innerWidth + 10) {
+
 
             var index = runnershoulddelete.indexOf(this.cdsid);
             if (index >= 0) {
@@ -201,16 +176,22 @@ class FKSystem {
                 delete runnercache[this.cdsid];
                 flag = true;
             }
+            else{
+                this.x = 0 - 10;
+            }
         }
 
-        if (this.x < 0 - 100) {
-            this.x = window.innerWidth + 100;
+        if (this.x < 0 - 10) {
+
             var index = runnershoulddelete.indexOf(this.cdsid);
             if (index >= 0) {
                 runnershoulddelete.splice(index, 1);
                 removeArrayElement(cdsids, this.cdsid);
                 delete runnercache[this.cdsid];
                 flag = true;
+            }
+            else{
+                this.x = window.innerWidth + 10;
             }
         }
         return flag;

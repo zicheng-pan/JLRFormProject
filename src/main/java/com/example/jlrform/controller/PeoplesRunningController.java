@@ -18,13 +18,12 @@ public class PeoplesRunningController {
 
     @GetMapping("/peoplesrunning")
     public String setCountDownPageNumber(@RequestParam String cdsid, @RequestParam String answer) {
-        System.out.println(cdsid);
-        System.out.println(answer);
+        String ename = cdsid;
         try {
-            scoreService.calculateScore(cdsid, answer);
+            ename = scoreService.calculateScore(cdsid, answer);
         } finally {
 
-            webSocketSender.addpeopleinrunning(cdsid);
+            webSocketSender.addpeopleinrunning(ename);
             return "finished";
         }
     }

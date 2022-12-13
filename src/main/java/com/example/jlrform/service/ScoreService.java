@@ -21,7 +21,7 @@ public class ScoreService {
     @Autowired
     private QuizService quizService;
 
-    public void calculateScore(String cdsid, String answer) {
+    public String calculateScore(String cdsid, String answer) {
         User user = userService.getUserByCDSId(cdsid);
         if(user == null){
             throw new RuntimeException("There is no user named "+ cdsid);
@@ -42,6 +42,7 @@ public class ScoreService {
         user.setSubmitTime(new Date());
 
         userService.saveUser(user);
+        return user.getEName();
     }
 
 }

@@ -17,6 +17,23 @@ $(function () {
             console.log(z)
             console.log(y)
             setTimeout(function () {
+                if (y == 2){
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.open('get', serverhost + '/user/rank', true);
+
+                    xhr.send(null);
+                    var users = []
+                    xhr.onload = function (data) {
+                        console.log(xhr.responseText);
+                        var lists = eval(xhr.responseText);
+                        for (var i = 0; i < lists.length; i++) {
+                            users.push(lists[i]);
+                        }
+                        console.log(JSON.stringify(users));
+                        localStorage.setItem("users", JSON.stringify(users));
+                    };
+                }
                 if (y == 0){
                     jump();
                 }

@@ -1,1 +1,1 @@
-var serverhost = "http://localhost:8080";
+var serverhost = "https://exam.cross-env.cloudcar.oneiotworld.com";

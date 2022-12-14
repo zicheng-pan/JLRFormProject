@@ -10,7 +10,7 @@
         var users = [];
 
         $.ajaxSettings.async = false;
-        $.get(serverhost + '/user/priceRank', function (data) {
+        $.get(serverhost + '/user/rank', function (data) {
             localStorage.removeItem("users");
             var lists = eval(data);
             for (var i = 0; i < lists.length; i++) {

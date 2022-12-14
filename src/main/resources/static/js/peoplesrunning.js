@@ -4,8 +4,10 @@ let cdsids = [];
 let runnercache = {};
 let runnershoulddelete = [];
 let contentMap = {};
-let contentTemplate = ["∧,,∧", "∩ ∩", "(╥﹏╥)", "(⊙﹏⊙)", "/≥﹏≤\\", "(o'.'o)", "(-'.'-)","is happily running ", "mission completed", "距离成功只差一步", "很开心", "今日必得大奖", "好运连连", "is running on success"
+let contentlengthMap = {};
+let contentTemplate = ["∧,,∧", "∩ ∩", "(╥﹏╥)", "(⊙﹏⊙)", "/≥﹏≤\\", "(o'.'o)", "(-'.'-)", "happily running ", "mission completed", "距离成功只差一步", "很开心", "今日必得大奖", "好运连连", "is running on success"
 ];
+let contentLength = [4, 6, 6, 6, 8, 8, 10, 12, 10, 16, 8, 14, 8, 12];
 
 
 function random(min, max) {
@@ -98,30 +100,34 @@ class Arm {
             c.ellipse(this.x, this.y + this.length * 2, this.length * 3 * this.scale, this.length / 2 * this.scale, 0, Math.PI * 2, false);
             c.fill();
             c.restore();
-            let color = random(0, 255);
-            c.fillStyle = 'rgb(' + color + ',' +
-                (255 - color) + ',' + 255 + ')';
+            let color = random(120, 240);
+            // c.fillStyle = 'rgb(' + color + ',' +
+            //     22 + ',' + (255-color) + ')';
+            c.fillStyle = 'rgb(0,0,0)';
             let fontheight = Math.pow(Math.log(this.y), 2);
             c.font = fontheight + "px serif";
             // console.log("#####");
             // console.log(this.cdsid);
             let content = "ID:" + this.cdsid;
             if (contentMap.hasOwnProperty(this.cdsid)) {
-                content = content + contentMap[this.cdsid];
+                content = contentMap[this.cdsid];
             } else {
-                let randomData = contentTemplate[random(0, contentTemplate.length)];
-                content = content + randomData;
-                contentMap[this.cdsid] = randomData;
+                let rande = random(0, contentTemplate.length);
+                let randomData = contentTemplate[rande];
+                content = content + "  " + randomData;
+                let contentline = "";
+                for (let j = 0; j < content.length + contentLength[rande]; j++) {
+                    contentline = contentline + "-";
+                }
+                contentlengthMap[this.cdsid] = contentline;
+                contentMap[this.cdsid] = content;
             }
-            let contentline = "";
-            for (let j = 0; j < content.length; j++) {
-                contentline = contentline + "-";
-            }
+
             let x_position = this.x + 50 * this.scale;
 
-            c.fillText(contentline, x_position, this.y - fontheight)
-            c.fillText("|" + content + "|", x_position, this.y);
-            c.fillText(contentline, x_position, this.y + fontheight)
+            c.fillText(contentlengthMap[this.cdsid], x_position, this.y - fontheight)
+            c.fillText(" " + content , x_position, this.y);
+            c.fillText(contentlengthMap[this.cdsid], x_position, this.y + fontheight)
 
         }
 

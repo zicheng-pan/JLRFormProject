@@ -143,8 +143,7 @@
             text-decoration: none;
         }
         .div1 {
-            width:200px;
-            height:400px;
+            max-height: 400px;
             overflow:hidden;
             margin:auto;
             position:relative;
@@ -159,38 +158,16 @@
         .div2 {
             animation:anis 30s linear infinite;
         }
-        /*.div2:hover {*/
-        /*    animation-play-state:paused;*/
-        /*}*/
-
-        /*.typing {*/
-        /*    width: 18.5em; height: 1.25em;*/
-        /*    border-right: 1px solid transparent;*/
-        /*    animation: typing 3.5s steps(37, end), blink-caret .75s step-end infinite;*/
-        /*    font-family: Consolas, Monaco;*/
-        /*    word-break: break-all;*/
-        /*    overflow: hidden;*/
-        /*}*/
-        /*!* 打印效果 *!*/
-        /*@keyframes typing {*/
-        /*    from { width: 0; }*/
-        /*    to { width: 18.5em; }*/
-        /*}*/
-        /*!* 光标闪啊闪 *!*/
-        /*@keyframes blink-caret {*/
-        /*    from, to { border-color: transparent; }*/
-        /*    50% { border-color: currentColor; }*/
-        /*}*/
     </style>
 </head>
-<body style="height: 100%">
-<div class="htmleaf-container" style="height: 50%">
+<body style="height: 1000px">
+<div class="htmleaf-container" >
     <header class="htmleaf-header">
         <h1>Final Thank</h1>
     </header>
-    <div class="demo form-bg" style="height: 50%">
-        <div class="container">
-            <div class="row">
+    <div class="demo form-bg">
+        <div class="row">
+            <div class="container">
                 <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
                     <div class="div1">
                         <div class="div2" style="text-align: center">
@@ -223,11 +200,21 @@
             </div>
         </div>
     </div>
-    <div>
-
+</div>
+<div class="row" style="margin-bottom: 5px">
+    <div style="margin-left: 20px;">
+        <img style="width: 240px;display: block" src="pic/egg1.jpeg"/>
+    </div>
+    <div style="margin-left: 275px">
+        <img style="width: 240px;display: block" src="pic/egg2.jpeg"/>
+    </div>
+    <div style="margin-left: 535px">
+        <img style="width: 240px;display: block" src="pic/egg3.jpeg"/>
+    </div>
+    <div style="margin-left: 790px">
+        <img style="width: 240px;display: block" src="pic/egg4.jpeg"/>
     </div>
 </div>
-
 <audio id="myAudio" controls hidden="true" autoplay preload>
     <source src="./mp3/end.mp3" type="audio/mpeg">
 </audio>

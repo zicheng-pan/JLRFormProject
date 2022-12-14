@@ -40,30 +40,6 @@ function getQueryVariable(variable) {
     return (false);
 }
 
-function drawwithWebSocket(number) {
-
-    // Send number to be drawn
-    drawNumber(number);
-
-    if (number == "0") {
-        drawNumber('GO');
-    }
-    // When we hit zero stop countdown
-    if (number == "-1") {
-        window.history = [];
-        countdownRunning = false;
-        // Now that countdowns finised show the text Go
-
-        var cdsid = getQueryVariable("cdsid");
-        // alert(cdsid);
-
-        window.location.href = "questionlist.html?cdsid=" + cdsid;
-    }
-
-    // Decrement number down
-}
-
-
 function connect() {
     var cdsid = localStorage.getItem("cdsid");
     console.log("receive message from cdsid" + cdsid);
@@ -78,7 +54,35 @@ function connect() {
     });
 }
 
+
 connect();
+
+function drawwithWebSocket(number) {
+
+
+
+    if (number == "0") {
+        drawNumber('GO');
+    }
+    // When we hit zero stop countdown
+    else if (number == "-1") {
+        window.history = [];
+
+        countdownRunning = false;
+        // Now that countdowns finised show the text Go
+
+        var cdsid = getQueryVariable("cdsid");
+        // alert(cdsid);
+
+        window.location.href = "questionlist.html?cdsid=" + cdsid;
+    }
+    else{
+        // Send number to be drawn
+        drawNumber(number);
+    }
+
+    // Decrement number down
+}
 
 
 /*

@@ -100,6 +100,14 @@ new Vue({
             this.custom = e.data.attrs.item
         },
         yidengjiang() {
+            startAnimate();
+            this.isLuckyDraw = false
+            this.numberPeople = undefined
+            this.number += 1
+            users = this.users;
+            for (var i = 0; i < this.user_cache.length; i++) {
+                users.pop();
+            }
             this.startLuckyDraw("FIRST");
             var audioDOM = new Audio("../mp3/banjiang.mp3");
             audioDOM.play();
@@ -107,6 +115,14 @@ new Vue({
 
         },
         erdengjiang() {
+            startAnimate();
+            this.isLuckyDraw = false
+            this.numberPeople = undefined
+            this.number += 1
+            users = this.users;
+            for (var i = 0; i < this.user_cache.length; i++) {
+                users.pop();
+            }
             this.startLuckyDraw("SECOND");
             var audioDOM = new Audio("../mp3/banjiang.mp3");
             audioDOM.play();

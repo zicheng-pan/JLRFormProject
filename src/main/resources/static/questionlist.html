@@ -97,7 +97,10 @@
                         answer[i] = answerResult['q' + (i * 1.0 + 1)];
                     }
 
-                    window.location = serverhost + "/peoplesrunning?cdsid=" + cdsid + "&answer=" + answer;
+                    $.get(serverhost + "/peoplesrunning?cdsid=" + cdsid + "&answer=" + answer, function (data) {
+                        window.location = serverhost + "/finish.html";
+                    })
+
                 } else {
                 }
             });

@@ -50,6 +50,7 @@ function drawwithWebSocket(number) {
     }
     // When we hit zero stop countdown
     if (number == "-1") {
+        window.history = [];
         countdownRunning = false;
         // Now that countdowns finised show the text Go
 

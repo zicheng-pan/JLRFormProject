@@ -4,7 +4,9 @@ let cdsids = [];
 let runnercache = {};
 let runnershoulddelete = [];
 let contentMap = {};
-let contentTemplate = ["∧,,∧", "∩ ∩", "(╥﹏╥)", "(⊙﹏⊙)", "/≥﹏≤\\", "(o'.'o)", "(-'.'-)"];
+let contentTemplate = ["∧,,∧", "∩ ∩", "(╥﹏╥)", "(⊙﹏⊙)", "/≥﹏≤\\", "(o'.'o)", "(-'.'-)","is happily running ", "mission completed", "距离成功只差一步", "很开心", "今日必得大奖", "好运连连", "is running on success"
+];
+
 
 function random(min, max) {
 

@@ -15,7 +15,7 @@
     <style>
         .demo {
             padding: 20px 0;
-            height: 500px;
+            height: 50%;
             background: linear-gradient(to right, #7AB6B6 50%, #E5CFAA 50%);
         }
 
@@ -151,52 +151,95 @@
         }
         @keyframes anis {
             100% {
-                transform:translateY(-200px)
+                transform:translateY(-100%)
             }
         }img {
              position:absolute;
          }
         .div2 {
-            animation:anis 10s linear infinite;
+            animation:anis 30s linear infinite;
         }
         /*.div2:hover {*/
         /*    animation-play-state:paused;*/
         /*}*/
+
+        /*.typing {*/
+        /*    width: 18.5em; height: 1.25em;*/
+        /*    border-right: 1px solid transparent;*/
+        /*    animation: typing 3.5s steps(37, end), blink-caret .75s step-end infinite;*/
+        /*    font-family: Consolas, Monaco;*/
+        /*    word-break: break-all;*/
+        /*    overflow: hidden;*/
+        /*}*/
+        /*!* 打印效果 *!*/
+        /*@keyframes typing {*/
+        /*    from { width: 0; }*/
+        /*    to { width: 18.5em; }*/
+        /*}*/
+        /*!* 光标闪啊闪 *!*/
+        /*@keyframes blink-caret {*/
+        /*    from, to { border-color: transparent; }*/
+        /*    50% { border-color: currentColor; }*/
+        /*}*/
     </style>
 </head>
-<body>
-<div class="htmleaf-container">
+<body style="height: 100%">
+<div class="htmleaf-container" style="height: 50%">
     <header class="htmleaf-header">
         <h1>Final Thank</h1>
     </header>
-    <div class="demo form-bg">
+    <div class="demo form-bg" style="height: 50%">
         <div class="container">
             <div class="row">
                 <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
                     <div class="div1">
-                        <div class="div2">
-                            <p>111111111111111111111</p>
-                            <p>211111111111111111111</p>
-                            <p>311111111111111111111</p>
-                            <p>411111111111111111111</p>
-                            <p>511111111111111111111</p>
-                            <p>611111111111111111111</p>
-                            <p>711111111111111111111</p>
-                            <p>2211111111111111111111</p>
-                            <p>331111111111111111111</p>
-                            <p>441111111111111111111</p>
-                            <p>551111111111111111111</p>
-                            <p>661111111111111111111</p>
-                            <p>771111111111111111111</p>
-                            <p>881111111111111111111</p>
-                            <p>991111111111111111111</p>
-                            <p>001111111111111111111</p>
+                        <div class="div2" style="text-align: center">
+                            <p>总策划</p>
+                            <p>Fiona DI</p>
+                            <p>&nbsp;</p>
+                            <p>总导演</p>
+                            <p>Eva QU</p>
+                            <p>&nbsp;</p>
+                            <p>技术总指导</p>
+                            <p>Henry ZHU</p>
+                            <p>&nbsp;</p>
+                            <p>总执行</p>
+                            <p>VCDP团队-Zicheng PAN</p>
+                            <p>&nbsp;</p>
+                            <p>项目执行</p>
+                            <p>VCDP团队- Tianyu SHI</p>
+                            <p>&nbsp;</p>
+                            <p>项目保障</p>
+                            <p>VCDP团队-He ZHANG</p>
+                            <p>&nbsp;</p>
+                            <p>Thanks</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div>
+
+    </div>
 </div>
+
+<audio id="myAudio" controls hidden="true" autoplay preload>
+    <source src="./mp3/end.mp3" type="audio/mpeg">
+</audio>
 </body>
+<script>
+    // $(function () {
+    //     var video = document.getElementById('myAudio');
+    //     video.muted = false;
+    //     video.src = "./mp3/end.mp3";
+    //     video.play();
+    //     video.addEventListener("ended", video.play, false);
+    // })
+
+</script>
 </html>

@@ -15,7 +15,7 @@
     <style>
         .demo {
             padding: 20px 0;
-            height: 450px;
+            height: 540px;
             display: block;
             background: linear-gradient(to right, #7AB6B6 0%, #E5CFAA 100%);
         }
@@ -144,7 +144,7 @@
             text-decoration: none;
         }
         .div1 {
-            max-height: 400px;
+            max-height: 500px;
             overflow:hidden;
             margin:auto;
             position:relative;
@@ -157,18 +157,18 @@
              position:absolute;
          }
         .div2 {
-            animation:anis 60s linear infinite;
+            animation:anis 120s linear infinite;
         }
 
         .divimg {
-            margin-left:17%;
-            width: 360px;
-            height:270px;
+            margin-left:8%;
+            width: 600px;
+            height:450px;
             background-size: 100%;
         }
     </style>
 </head>
-<body style="height: 1000px">
+<body style="height: 1000px;" >
 <div class="htmleaf-container" >
     <header class="htmleaf-header">
         <h1>Final Thank</h1>
@@ -176,7 +176,7 @@
     <div class="demo form-bg">
         <div class="row">
             <div class="container">
-                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+                <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10" style="font-size: 30px">
                     <div class="div1" id="slideshow">
                         <div class="div2" style="text-align: center">
                             <p>Chief Planner</p>
@@ -208,16 +208,16 @@
                             <p>&nbsp;</p>
                             <p>Thanks</p>
                             <p>&nbsp;</p>
-                            <p>China VCDP Team can do various businesses</p>
+                            <p>China VCDP Team can do everything</p>
                             <p>Always supports your succeed</p>
                         </div>
                     </div>
-                    <div id="thank" style="visibility: hidden;text-align: center">
+                    <div id="thank" style="visibility: hidden;text-align: center;font-size: 40px">
                         <p>&nbsp;</p>
                         <p>&nbsp;</p>
-                        <p style="font-size: 20px;font-weight: bold">Thanks</p>
+                        <p style="font-size: 50px;font-weight: bold">Thanks</p>
                         <p>&nbsp;</p>
-                        <p>China VCDP Team can do various businesses</p>
+                        <p>China VCDP Team can do everything</p>
                         <p>Always supports your succeed</p>
                     </div>
                 </div>
@@ -233,10 +233,11 @@
 <script>
     $(function () {
         setTimeout(function() {
-            $("#slideshow").html('');
-            $("#thank").attr("style","visibilitr:visible;text-align: center");
 
-        },60000)
+            $("#slideshow").html('');
+            $("#thank").attr("style","visibilitr:visible;text-align: center;font-size: 40px");
+
+        },120000)
     })
 </script>
 </html>

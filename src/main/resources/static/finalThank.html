@@ -15,7 +15,8 @@
     <style>
         .demo {
             padding: 20px 0;
-            height: 50%;
+            height: 450px;
+            display: block;
             background: linear-gradient(to right, #7AB6B6 0%, #E5CFAA 100%);
         }
 
@@ -156,7 +157,14 @@
              position:absolute;
          }
         .div2 {
-            animation:anis 30s linear infinite;
+            animation:anis 60s linear infinite;
+        }
+
+        .divimg {
+            margin-left:17%;
+            width: 360px;
+            height:270px;
+            background-size: 100%;
         }
     </style>
 </head>
@@ -168,8 +176,8 @@
     <div class="demo form-bg">
         <div class="row">
             <div class="container">
-                <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
-                    <div class="div1">
+                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+                    <div class="div1" id="slideshow">
                         <div class="div2" style="text-align: center">
                             <p>Chief Planner</p>
                             <p>Fiona DI</p>
@@ -177,22 +185,22 @@
                             <p>Chief Director</p>
                             <p>Eva QU</p>
                             <p>&nbsp;</p>
-                            <div style="margin-left:15%;width: 240px;height:180px;background-size: 100%;background-image: url('pic/egg1.jpeg')"  ></div>
+                            <div class="divimg" style="background-image: url('pic/egg2.jpeg')"  ></div>
                             <p>&nbsp;</p>
                             <p>Chief Technical Mentor</p>
                             <p>Henry ZHU</p>
                             <p>&nbsp;</p>
-                            <div style="margin-left:15%;width: 240px;height:180px;background-size: 100%;background-image: url('pic/egg2.jpeg')"  ></div>
+                            <div class="divimg" style="background-image: url('pic/egg4.jpeg')"  ></div>
                             <p>&nbsp;</p>
                             <p>Chief Executor</p>
                             <p>VCDP Team - Zicheng PAN</p>
                             <p>&nbsp;</p>
-                            <div style="margin-left:15%;width: 240px;height:180px;background-size: 100%;background-image: url('pic/egg3.jpeg')"  ></div>
+                            <div class="divimg" style="background-image: url('pic/egg3.jpeg')"  ></div>
                             <p>&nbsp;</p>
                             <p>Project Executor</p>
                             <p>VCDP Team - Tianyu SHI</p>
                             <p>&nbsp;</p>
-                            <div style="margin-left:15%;width: 240px;height:180px;background-size: 100%;background-image: url('pic/egg4.jpeg')"  ></div>
+                            <div class="divimg" style="background-image: url('pic/egg1.jpeg')"  ></div>
                             <p>&nbsp;</p>
                             <p>Project Guarantor</p>
                             <p>VCDP Team - He ZHANG</p>
@@ -200,11 +208,17 @@
                             <p>&nbsp;</p>
                             <p>Thanks</p>
                             <p>&nbsp;</p>
-                            <p>China VCDP Team承接各种业务</p>
+                            <p>China VCDP Team can do various businesses</p>
                             <p>Always supports your succeed</p>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
                         </div>
+                    </div>
+                    <div id="thank" style="visibility: hidden;text-align: center">
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p style="font-size: 20px;font-weight: bold">Thanks</p>
+                        <p>&nbsp;</p>
+                        <p>China VCDP Team can do various businesses</p>
+                        <p>Always supports your succeed</p>
                     </div>
                 </div>
             </div>
@@ -217,13 +231,12 @@
 </audio>
 </body>
 <script>
-    // $(function () {
-    //     var video = document.getElementById('myAudio');
-    //     video.muted = false;
-    //     video.src = "./mp3/end.mp3";
-    //     video.play();
-    //     video.addEventListener("ended", video.play, false);
-    // })
+    $(function () {
+        setTimeout(function() {
+            $("#slideshow").html('');
+            $("#thank").attr("style","visibilitr:visible;text-align: center");
 
+        },60000)
+    })
 </script>
 </html>

@@ -4,7 +4,9 @@ body {
     width: 100%;
     margin: 0 auto;
     -webkit-text-size-adjust: none;
-    overflow-x: hidden
+    overflow-x: hidden;
+    font-weight:bold;
+    align-items: center;
 }
 
 p, ol, ul, li {
@@ -22,7 +24,7 @@ button {
 }
 
 label {
-    font-weight: normal
+    font-weight: bold
 }
 
 img {
@@ -147,7 +149,8 @@ input {
 
 .card .card_bottom a {
     color: #c733c5;
-    cursor: pointer
+    cursor: pointer;
+    margin-left: -80%;
 }
 
 .card .card_bottom span {
@@ -166,7 +169,7 @@ input {
     -ms-transform: scale(1, 1) translate(0, 0) !important;
     -moz-transform: scale(1, 1) translate(0, 0) !important;
     -webkit-transform: scale(1, 1) translate(0, 0) !important;
-    /*background: url("../pic/landrover3.gif");*/
+    background: url("../pic/landrover3.gif");
 }
 
 .card_cont.card2 {
@@ -175,7 +178,7 @@ input {
     -ms-transform: scale(.85, .85) translate(0, -62px) !important;
     -moz-transform: scale(.85, .85) translate(0, -62px) !important;
     -webkit-transform: scale(.85, .85) translate(0, -62px) !important;
-    /*background: url("../pic/landrover3.gif");*/
+    background: url("../pic/landrover3.gif");
 }
 
 .card_cont.card3 {
@@ -184,7 +187,7 @@ input {
     -ms-transform: scale(.72, .72) translate(0, -135px) !important;
     -moz-transform: scale(.72, .72) translate(0, -135px) !important;
     -webkit-transform: scale(.72, .72) translate(0, -135px) !important;
-    /*background: url("../pic/landrover3.gif");*/
+    background: url("../pic/landrover3.gif");
 }
 
 .card_cont.cardn {
@@ -199,7 +202,7 @@ input {
     display: table-cell;
     height: 120px;
     font-size: 18px;
-    font-weight: 100;
+    font-weight: 2000;
     color: orangered;
     line-height: 1.4;
     vertical-align: middle;
@@ -225,7 +228,7 @@ input[type='radio'] + label {
     display: inline-block;
     position: relative;
     padding-left: 28px;
-    color: #ddd;
+    color: lightgoldenrodyellow;
 }
 
 input[type='radio']:checked + label {

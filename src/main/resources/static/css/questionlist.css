@@ -81,15 +81,22 @@ input {
 /** * CSS3 答题卡翻页效果 jQuery Transit  * @authors Candice <286556658@qq.com> * @date    2016-9-27 15:30:18 * @version v1.0.8 */
 .wrapper {
     width: 100%;
-    margin: 0 auto;
+    margin: auto auto;
     /*background: url("../pic/landrover3.gif");*/
+    border-radius: 5px;
+
 }
 
 .card_wrap {
     padding-top: 50px;
-    width: 400px;
-    height: 584px;
-    position: relative;
+    width: 100%;
+    height: 660px;
+    position: absolute;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    /*left: ;*/
+    /*top: 5%;*/
     overflow: hidden;
     display: none;
 
@@ -97,13 +104,16 @@ input {
 
 .card_cont {
     width: 100%;
-    height: 530px;
+    height: 650px;
     box-sizing: border-box;
     margin: 0 auto;
     position: absolute;
-    background: url(../pic/test_card_bg.png) no-repeat center top;
+    /*background: url(../pic/test_card_bg.png) no-repeat center top;*/
+    background: #000;
+    border-radius: 5px;
     background-size: 100% auto;
     padding: 8px 20px 18px;
+    /*filter:blur(20px);*/
     transition: all ease .5s;
     -webkit-transition: all ease .5s;
     -moz-transition: all ease .5s;
@@ -118,17 +128,18 @@ input {
 }
 
 .card {
-    width: 80%;
-    height: 100%;
+    width: 100%;
+    /*height: 100%;*/
+    height: 600px;
     position: relative;
-    margin: 0 auto;
+    margin: auto auto;
     padding: 0 18px;
 }
 
 .card .card_bottom {
     width: 100%;
     position: absolute;
-    bottom: 28px;
+    bottom: 20px;
     left: 0;
     box-sizing: border-box;
     padding: 0 28px
@@ -141,11 +152,11 @@ input {
 
 .card .card_bottom span {
     float: right;
-    color: #909090
+    color: #fffbe6;
 }
 
 .card .card_bottom span b {
-    color: #666;
+    color: #ffffff;
     font-weight: inherit
 }
 
@@ -155,6 +166,7 @@ input {
     -ms-transform: scale(1, 1) translate(0, 0) !important;
     -moz-transform: scale(1, 1) translate(0, 0) !important;
     -webkit-transform: scale(1, 1) translate(0, 0) !important;
+    /*background: url("../pic/landrover3.gif");*/
 }
 
 .card_cont.card2 {
@@ -163,6 +175,7 @@ input {
     -ms-transform: scale(.85, .85) translate(0, -62px) !important;
     -moz-transform: scale(.85, .85) translate(0, -62px) !important;
     -webkit-transform: scale(.85, .85) translate(0, -62px) !important;
+    /*background: url("../pic/landrover3.gif");*/
 }
 
 .card_cont.card3 {
@@ -171,6 +184,7 @@ input {
     -ms-transform: scale(.72, .72) translate(0, -135px) !important;
     -moz-transform: scale(.72, .72) translate(0, -135px) !important;
     -webkit-transform: scale(.72, .72) translate(0, -135px) !important;
+    /*background: url("../pic/landrover3.gif");*/
 }
 
 .card_cont.cardn {
@@ -183,10 +197,10 @@ input {
 
 .question {
     display: table-cell;
-    height: 80px;
-    font-size: 16px;
+    height: 120px;
+    font-size: 18px;
     font-weight: 100;
-    color: #fff;
+    color: orangered;
     line-height: 1.4;
     vertical-align: middle;
     padding-left: 1em
@@ -211,7 +225,7 @@ input[type='radio'] + label {
     display: inline-block;
     position: relative;
     padding-left: 28px;
-    color: #666;
+    color: #ddd;
 }
 
 input[type='radio']:checked + label {
@@ -262,11 +276,11 @@ input[type='radio']:checked + label:after, input[type='radio']:checked + label:h
 }
 
 ul.select {
-    margin-top: 30px
+    /*margin-top: 10px*/
 }
 
 ul.select li {
-    height: 46px;
+    height: 80px;
     line-height: 1.5;
     margin: 0 0 20px 0
 }

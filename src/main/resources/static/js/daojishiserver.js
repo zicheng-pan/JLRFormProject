@@ -102,17 +102,23 @@ function countdown() {
         console.log(html);
     });
 
-    // Send number to be drawn
-    drawNumber(countdownFrom.toString());
-
+    console.log(countdownFrom);
     // When we hit zero stop countdown
     if (countdownFrom === 0) {
-        countdownRunning = false;
         // Now that countdowns finised show the text Go
         drawNumber('GO');
+    } else if (countdownFrom === -1) {
+        countdownRunning = false;
         $.get(serverhost + "/countdownnumber?number=" + "-1", function (html) {
+            alert(1);
             window.location = "peoplesrunning.html";
         });
+    } else {
+        if (countdownFrom === 2) {
+            playbgm();
+        }
+        // Send number to be drawn
+        drawNumber(countdownFrom.toString());
     }
 
     // Decrement number down
@@ -149,7 +155,6 @@ function drawNumber(num) {
 
     //	Clear stage of previous numbers
     numberStageCtx.clearRect(0, 0, numberStageWidth, numberStageHeight);
-
     numberStageCtx.fillStyle = "#24282f";
     numberStageCtx.textAlign = 'center';
     numberStageCtx.font = "bold 418px Lato";
@@ -213,7 +218,7 @@ function formNumber() {
     }
 
     // Break number apart
-    if (countdownRunning && countdownFrom > 0) {
+    if (countdownRunning && countdownFrom >= -1) {
         setTimeout(function () {
             breakNumber();
         }, countdownTimer);

@@ -45,6 +45,21 @@
 
 <body>
 
+<audio id="myAudio" controls hidden="true">
+    <source src="./mp3/新闻联播.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+<script>
+    function playbgm() {
+        var video = document.getElementById('myAudio');
+        video.src = "./mp3/新闻联播.mp3";
+        video.play();
+        video.loop = false;
+        video.addEventListener("ended", video.play, true);
+    }
+</script>
+
 <script src="js/TweenMax.min.js"></script>
 
 <canvas id="canvas-number" style="position:fixed;left:100%;display: none"></canvas>
@@ -56,17 +71,4 @@
 
 </div>
 
-<audio id="myAudio" controls hidden="true">
-    <source src="./mp3/daojishi.mp3" type="audio/mpeg">
-</audio>
-
-</body>
-<script>
-    function playbgm () {
-        var video = document.getElementById('myAudio');
-        video.src = "./mp3/daojishi.mp3";
-        video.play();
-        video.addEventListener("ended", video.play, false);
-    }
-</script>
 </html>

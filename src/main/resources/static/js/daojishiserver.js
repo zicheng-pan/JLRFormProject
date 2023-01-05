@@ -110,7 +110,6 @@ function countdown() {
     } else if (countdownFrom === -1) {
         countdownRunning = false;
         $.get(serverhost + "/countdownnumber?number=" + "-1", function (html) {
-            alert(1);
             window.location = "peoplesrunning.html";
         });
     } else {

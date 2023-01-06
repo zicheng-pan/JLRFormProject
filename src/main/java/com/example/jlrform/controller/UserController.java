@@ -51,4 +51,9 @@ public class UserController {
     public List<UserDto> getPriceRank() {
         return userService.getPriceRank();
     }
+
+    @GetMapping(value = "/user/refresh", produces = "application/json; charset=utf-8")
+    public boolean refresh() {
+        return userService.refreshDataBase();
+    }
 }

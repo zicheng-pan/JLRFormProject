@@ -53,10 +53,16 @@
 <script>
     function playbgm() {
         var video = document.getElementById('myAudio');
-        video.src = "./mp3/新闻联播.mp3";
+        video.addEventListener("ended", function () {
+            video.stop();
+        });
         video.play();
-        video.loop = false;
-        video.addEventListener("ended", video.play, true);
+    }
+
+    function refreshDataBase() {
+        $.get(serverhost + "/user/refresh", function (html) {
+            alert("refresh database " + html);
+        });
     }
 </script>
 
@@ -67,7 +73,7 @@
 <script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/hostname.js"></script>
 <script src="js/daojishiserver.js"></script>
-<div class="img-box__img2" onclick="playbgm()">
+<div class="img-box__img2" onclick="refreshDataBase()">
 
 </div>
 

@@ -3,12 +3,14 @@ package com.example.jlrform.service;
 import com.example.jlrform.dao.UserDao;
 import com.example.jlrform.dto.UserDto;
 import com.example.jlrform.entity.User;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,17 +28,17 @@ public class UserService {
     @Value("${price.first}")
     private int firstPriceNum;
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         userDao.findAll().forEach(u -> users.add(u));
         return users;
     }
 
-    public User getUserByCDSId(String cdsid){
+    public User getUserByCDSId(String cdsid) {
         return userDao.findByCdsid(cdsid.toLowerCase());
     }
 
-    public User saveUser(String cdsid,String eName,String cName,Boolean involved,int score){
+    public User saveUser(String cdsid, String eName, String cName, Boolean involved, int score) {
         User user = new User();
         user.setCdsid(cdsid);
         user.setEName(eName);
@@ -46,16 +48,16 @@ public class UserService {
         return saveUser(user);
     }
 
-    public User saveUser(User user){
+    public User saveUser(User user) {
         return userDao.save(user);
     }
 
-    public List<UserDto> getAllRank(){
+    public List<UserDto> getAllRank() {
         List<User> users = getAllUsers();
-        List<User> submitedusers = users.stream().filter(u ->u.getSubmitTime() != null).collect(Collectors.toList());
+        List<User> submitedusers = users.stream().filter(u -> u.getSubmitTime() != null).collect(Collectors.toList());
 
         List<UserDto> submitedUserDtos = new ArrayList<>(submitedusers.size());
-        for(int i = 0 ; i < submitedusers.size(); i++){
+        for (int i = 0; i < submitedusers.size(); i++) {
             UserDto userDto = new UserDto();
             User submiteduser = submitedusers.get(i);
             userDto.setCdsid(submiteduser.getCdsid());
@@ -69,7 +71,7 @@ public class UserService {
         Collections.sort(submitedUserDtos, new UserDto.UserComparator());
 
         List<UserDto> userRankList = new ArrayList<>();
-        for(UserDto userDto: submitedUserDtos){
+        for (UserDto userDto : submitedUserDtos) {
             Integer score = userDto.getScore();
             Integer rankLowerThanCurrentUser = submitedUserDtos.stream().filter(su -> su.getScore() > score || (su.getScore().equals(score) && su.getSubmitTime().getTime() < userDto.getSubmitTime().getTime())).collect(Collectors.toList()).size();
             userDto.setRank(rankLowerThanCurrentUser + 1);
@@ -78,25 +80,25 @@ public class UserService {
         return userRankList;
     }
 
-    public List<UserDto> getPriceRank(){
+    public List<UserDto> getPriceRank() {
         List<UserDto> userDtos = this.getAllRank();
 
-        Map<Integer,UserDto> rankUserMap = userDtos.stream().collect(Collectors.toMap(UserDto ::getRank,user ->user));
+        Map<Integer, UserDto> rankUserMap = userDtos.stream().collect(Collectors.toMap(UserDto::getRank, user -> user));
 
         List<UserDto> results = new ArrayList<>();
 
-        if(firstPriceNum > allPriceNum){
+        if (firstPriceNum > allPriceNum) {
             throw new RuntimeException("Wrong properties: first price num is larger than all price num");
         }
 
-        for(int i = 0;i<allPriceNum; i++){
-            UserDto user = rankUserMap.get(i+1);
-            if(user == null){
+        for (int i = 0; i < allPriceNum; i++) {
+            UserDto user = rankUserMap.get(i + 1);
+            if (user == null) {
                 break;
             }
-            if(i < firstPriceNum){
+            if (i < firstPriceNum) {
                 user.setPriceLevel(UserDto.PriceLevel.FIRST);
-            }else{
+            } else {
                 user.setPriceLevel(UserDto.PriceLevel.SECOND);
             }
 
@@ -104,5 +106,19 @@ public class UserService {
         }
 
         return results;
+    }
+
+    public boolean refreshDataBase() {
+        try {
+            List<User> allUsers = getAllUsers();
+            allUsers.stream().forEach(user -> {
+                user.setScore(0);
+                user.setSubmitTime(null);
+            });
+            userDao.saveAll(allUsers);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }

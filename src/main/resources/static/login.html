@@ -175,7 +175,7 @@
         var value = document.getElementById("user_cdsid").value;
         console.log(value);
 
-        $.get(serverhost + "/user/cdsid?cdsid=" + value, function (data) {
+        $.get(serverhostname + "/user/cdsid?cdsid=" + value, function (data) {
             console.log(data);
             if (data) {
                 window.localStorage.setItem("cdsid", value);

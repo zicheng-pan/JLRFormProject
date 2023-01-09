@@ -5,13 +5,31 @@ new Vue({
       <!-- 抽奖显示页面 -->
       <div :class="isLuckyDraw ? 'lucky-draw-content lucky-draw-start' : 'lucky-draw-content'">
         <div :class="isLuckyDraw ? 'lucky-draw-users lucky-draw-users-start' : 'lucky-draw-users'">
-          <div class="lucky-draw-user" v-for="item in users" :key="index">
+          <div class="lucky-draw-user" v-for="item in users.slice(0,5)" :key="index">
             <div class="lucky-draw-user-name">{{ item.ename }}</div>
             <div class="lucky-draw-user-department">{{ item.cname }}</div>
             <div class="lucky-draw-user-department">{{ item.cdsid }}</div>
           </div>
           <div v-if="!users.length && !surplusUsers.length" class="ucky-draw-empty">Still no finished yet</div>
-        </div>
+        </div>  
+        
+        <div v-if="users.length>5" :class="isLuckyDraw ? 'lucky-draw-users lucky-draw-users-start' : 'lucky-draw-users'" >
+          <div class="lucky-draw-user" v-for="item in users.slice(5,10)" :key="index">
+            <div class="lucky-draw-user-name">{{ item.ename }}</div>
+            <div class="lucky-draw-user-department">{{ item.cname }}</div>
+            <div class="lucky-draw-user-department">{{ item.cdsid }}</div>
+          </div>
+          <div v-if="!users.length && !surplusUsers.length" class="ucky-draw-empty">Still no finished yet</div>
+        </div>  
+        
+        <div v-if="users.length>10" :class="isLuckyDraw ? 'lucky-draw-users lucky-draw-users-start' : 'lucky-draw-users'">
+          <div class="lucky-draw-user" v-for="item in users.slice(10,15)" :key="index">
+            <div class="lucky-draw-user-name">{{ item.ename }}</div>
+            <div class="lucky-draw-user-department">{{ item.cname }}</div>
+            <div class="lucky-draw-user-department">{{ item.cdsid }}</div>
+          </div>
+          <div v-if="!users.length && !surplusUsers.length" class="ucky-draw-empty">Still no finished yet</div>
+        </div>  
       </div>
       <!-- 设置奖项，人数，并开始抽奖 -->
       <div class="lucky-draw-tool-left">

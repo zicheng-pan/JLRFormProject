@@ -107,11 +107,11 @@ function countdown() {
     if (countdownFrom === 0) {
         // Now that countdowns finised show the text Go
         drawNumber('GO');
+        $.get(serverhost + "/countdownnumber?number=" + "-1", function (html) {
+        });
     } else if (countdownFrom === -1) {
         countdownRunning = false;
-        $.get(serverhost + "/countdownnumber?number=" + "-1", function (html) {
-            window.location = "peoplesrunning.html";
-        });
+        window.location = "peoplesrunning.html";
     } else {
         if (countdownFrom === 2) {
             playbgm();

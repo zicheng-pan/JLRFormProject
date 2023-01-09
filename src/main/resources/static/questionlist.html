@@ -14,6 +14,13 @@
     <meta name="keywords" content="">
     <link href="css/questionlist.css" rel="stylesheet">
     <script type="text/javascript" src="js/hostname.js"></script>
+    <style>
+        .divimg {
+            margin-left: 8%;
+            height: 183px;
+            background-size: 100%;
+        }
+    </style>
 </head>
 <body style="background-color:white">
 <div class="wrapper">
@@ -64,8 +71,12 @@
                     '            <div class="card">\n' +
                     '                <p class="question">\n' +
                     '                    <span>Q' + question.index + '、</span>' + question.context + '\n' +
-                    '                </p>\n' +
-                    '                <ul class="select">\n';
+                    '                </p>\n';
+                    if(question.index == 5){
+                        html += '<div class="divimg" style="background-image: url(\'pic/question5_img.png\')"></div>\n';
+                    }
+
+                html += '                <ul class="select" style="margin-top: 10px">\n';
                 for (j = 0; j < options.length; j++) {
                     html += '                    <li>\n' +
                         '                        <input id="q' + i + '_' + j + '" type="radio" name="r-group-' + i + '" onclick="changeAnswer(' + question.index + ',' + options[j].index + ')"><label\n' +
@@ -75,11 +86,11 @@
                 html += '                </ul>\n' +
                     '                <div class="card_bottom">\n';
                 if (i == data.length - 1) {
-                    html += '                    <a class="prev">上一题</a><span><b  id="mysubmit" style="color: #c733c5; cursor: pointer">提交</b></span>\n';
+                    html += '                    <a class="prev" style="text-align: center">上一题</a><span><b  id="mysubmit" style="color: #c733c5; cursor: pointer">提交</b></span>\n';
                 } else if (i == 0) {
                     html += '                    <span><b>' + (i * 1.0 + 1) + '</b>/' + data.length + '</span>\n';
                 } else {
-                    html += '                    <a class="prev">上一题</a><span><b>' + (i * 1.0 + 1) + '</b>/' + data.length + '</span>\n';
+                    html += '                    <a class="prev" style="text-align: center">上一题</a><span><b>' + (i * 1.0 + 1) + '</b>/' + data.length + '</span>\n';
                 }
                 html += '                </div>\n' +
                     '            </div>\n' +

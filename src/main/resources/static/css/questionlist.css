@@ -5,7 +5,7 @@ body {
     margin: 0 auto;
     -webkit-text-size-adjust: none;
     overflow-x: hidden;
-    font-weight:bold;
+    font-weight: bold;
     align-items: center;
 }
 
@@ -168,7 +168,8 @@ input {
     -ms-transform: scale(1, 1) translate(0, 0) !important;
     -moz-transform: scale(1, 1) translate(0, 0) !important;
     -webkit-transform: scale(1, 1) translate(0, 0) !important;
-    background: url("../pic/landrover3.gif");
+    /*background: url("../pic/test_card_bg.png");*/
+    background: linear-gradient(to bottom,rgb(200,200,169)  0%, rgb(249,205,173) 70%);
 }
 
 .card_cont.card2 {
@@ -177,7 +178,8 @@ input {
     -ms-transform: scale(.85, .85) translate(0, -62px) !important;
     -moz-transform: scale(.85, .85) translate(0, -62px) !important;
     -webkit-transform: scale(.85, .85) translate(0, -62px) !important;
-    background: url("../pic/landrover3.gif");
+    /*background: url("../pic/test_card_bg.png");*/
+    background: linear-gradient(to bottom,rgb(200,200,169)  0%, rgb(249,205,173) 70%);
 }
 
 .card_cont.card3 {
@@ -186,8 +188,10 @@ input {
     -ms-transform: scale(.72, .72) translate(0, -135px) !important;
     -moz-transform: scale(.72, .72) translate(0, -135px) !important;
     -webkit-transform: scale(.72, .72) translate(0, -135px) !important;
-    background: url("../pic/landrover3.gif");
+    /*background: url("../pic/test_card_bg.png");*/
+    background: linear-gradient(to bottom,rgb(200,200,169)  0%, rgb(249,205,173) 70%);
 }
+
 
 .card_cont.cardn {
     display: block;
@@ -227,7 +231,7 @@ input[type='radio'] + label {
     display: inline-block;
     position: relative;
     padding-left: 28px;
-    color: lightgoldenrodyellow;
+    color: darkslateblue;
 }
 
 input[type='radio']:checked + label {

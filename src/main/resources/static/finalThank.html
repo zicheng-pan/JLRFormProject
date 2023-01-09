@@ -143,33 +143,46 @@
             color: #7AB6B6;
             text-decoration: none;
         }
+
         .div1 {
             max-height: 80%;
-            overflow:hidden;
-            margin:auto;
-            position:relative;
+            overflow: hidden;
+            margin: auto;
+            position: relative;
         }
+
         @keyframes anis {
             100% {
-                transform:translateY(-100%)
+                transform: translateY(-100%)
             }
-        }img {
-             position:absolute;
-         }
+        }
+
+        img {
+            position: absolute;
+        }
+
         .div2 {
-            animation:anis 120s linear infinite;
+            animation: anis 30s linear infinite;
         }
 
         .divimg {
-            margin-left:8%;
+            margin-left: 8%;
             width: 600px;
-            height:450px;
+            height: 450px;
             background-size: 100%;
+        }
+
+        .peoplename {
+            color: rgb(89, 61, 67);
+        }
+
+        .peopletitle {
+            font-size: 1em;
         }
     </style>
 </head>
-<body style="" >
-<div class="htmleaf-container" >
+<body style="">
+<div class="htmleaf-container">
     <header class="htmleaf-header">
         <h1>Final Thank</h1>
     </header>
@@ -179,31 +192,33 @@
                 <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10" style="font-size: 30px">
                     <div class="div1" id="slideshow">
                         <div class="div2" style="text-align: center">
-                            <p>Chief Planner</p>
-                            <p>Fiona DI</p>
                             <p>&nbsp;</p>
-                            <p>Chief Director</p>
-                            <p>Eva QU</p>
                             <p>&nbsp;</p>
-                            <div class="divimg" style="background-image: url('pic/egg2.jpeg')"  ></div>
+                            <p class="peopletitle">Chief Planner</p>
+                            <p class="peoplename">Fiona DI</p>
                             <p>&nbsp;</p>
-                            <p>Chief Technical Mentor</p>
-                            <p>Henry ZHU</p>
+                            <p class="peopletitle">Chief Director</p>
+                            <p class="peoplename">Eva QU</p>
                             <p>&nbsp;</p>
-                            <div class="divimg" style="background-image: url('pic/egg4.jpeg')"  ></div>
+                            <div class="divimg" style="background-image: url('pic/egg2.jpeg')"></div>
                             <p>&nbsp;</p>
-                            <p>Chief Executor</p>
-                            <p>VCDP Team - Zicheng PAN</p>
+                            <p class="peopletitle">Chief Technical Mentor</p>
+                            <p class="peoplename">Henry ZHU</p>
                             <p>&nbsp;</p>
-                            <div class="divimg" style="background-image: url('pic/egg3.jpeg')"  ></div>
+                            <div class="divimg" style="background-image: url('pic/egg4.jpeg')"></div>
                             <p>&nbsp;</p>
-                            <p>Project Executor</p>
-                            <p>VCDP Team - Tianyu SHI</p>
+                            <p class="peopletitle">Chief Executor</p>
+                            <p class="peoplename">VCDP Team - Zicheng PAN</p>
                             <p>&nbsp;</p>
-                            <div class="divimg" style="background-image: url('pic/egg1.jpeg')"  ></div>
+                            <div class="divimg" style="background-image: url('pic/egg3.jpeg')"></div>
                             <p>&nbsp;</p>
-                            <p>Project Guarantor</p>
-                            <p>VCDP Team - He ZHANG</p>
+                            <p class="peopletitle">Project Executor</p>
+                            <p class="peoplename">VCDP Team - Tianyu SHI</p>
+                            <p>&nbsp;</p>
+                            <div class="divimg" style="background-image: url('pic/egg1.jpeg')"></div>
+                            <p>&nbsp;</p>
+                            <p class="peopletitle">Project Guarantor</p>
+                            <p class="peoplename">VCDP Team - He ZHANG</p>
                             <p>&nbsp;</p>
                             <p>&nbsp;</p>
                             <p>Thanks</p>
@@ -232,12 +247,12 @@
 </body>
 <script>
     $(function () {
-        setTimeout(function() {
+        setTimeout(function () {
 
             $("#slideshow").html('');
-            $("#thank").attr("style","visibilitr:visible;text-align: center;font-size: 40px");
+            $("#thank").attr("style", "visibilitr:visible;text-align: center;font-size: 40px");
 
-        },120000)
+        }, 120000)
     })
 </script>
 </html>

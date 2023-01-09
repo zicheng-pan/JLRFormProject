@@ -169,7 +169,7 @@ input {
     -moz-transform: scale(1, 1) translate(0, 0) !important;
     -webkit-transform: scale(1, 1) translate(0, 0) !important;
     /*background: url("../pic/test_card_bg.png");*/
-    background: linear-gradient(to bottom,rgb(200,200,169)  0%, rgb(249,205,173) 70%);
+    background: linear-gradient(to bottom,#7AB6B6 0%, #E5CFAA 80%);
 }
 
 .card_cont.card2 {
@@ -179,7 +179,7 @@ input {
     -moz-transform: scale(.85, .85) translate(0, -62px) !important;
     -webkit-transform: scale(.85, .85) translate(0, -62px) !important;
     /*background: url("../pic/test_card_bg.png");*/
-    background: linear-gradient(to bottom,rgb(200,200,169)  0%, rgb(249,205,173) 70%);
+    background: linear-gradient(to bottom,#7AB6B6 0%, #E5CFAA 80%);
 }
 
 .card_cont.card3 {
@@ -189,7 +189,7 @@ input {
     -moz-transform: scale(.72, .72) translate(0, -135px) !important;
     -webkit-transform: scale(.72, .72) translate(0, -135px) !important;
     /*background: url("../pic/test_card_bg.png");*/
-    background: linear-gradient(to bottom,rgb(200,200,169)  0%, rgb(249,205,173) 70%);
+    background: linear-gradient(to bottom,#7AB6B6 0%, #E5CFAA 80%);
 }
 
 

@@ -78,6 +78,11 @@ body {
   background-color: rgba(0, 255, 255, 0);
   transition: all 1s;
 }
+.luck-draw-content-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .lucky-draw-start {
   opacity: 1;
   background-color: rgba(0, 255, 255, 0.4);

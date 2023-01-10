@@ -3,7 +3,8 @@ new Vue({
     template: `
     <div class="lucky-draw-view">
       <!-- 抽奖显示页面 -->
-      <div :class="isLuckyDraw ? 'lucky-draw-content lucky-draw-start' : 'lucky-draw-content'">
+      <div :class="[isLuckyDraw ? 'lucky-draw-content lucky-draw-start' : 'lucky-draw-content', users.length<=5 ? 'luck-draw-content-center':'']">
+      
         <div :class="isLuckyDraw ? 'lucky-draw-users lucky-draw-users-start' : 'lucky-draw-users'">
           <div class="lucky-draw-user" v-for="item in users.slice(0,5)" :key="index">
             <div class="lucky-draw-user-name">{{ item.ename }}</div>

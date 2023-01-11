@@ -119,6 +119,7 @@ new Vue({
             this.custom = e.data.attrs.item
         },
         yidengjiang() {
+            stopAnimate()
             startAnimate();
             this.isLuckyDraw = false
             this.numberPeople = undefined
@@ -134,6 +135,7 @@ new Vue({
 
         },
         erdengjiang() {
+            stopAnimate()
             startAnimate();
             this.isLuckyDraw = false
             this.numberPeople = undefined
@@ -147,6 +149,7 @@ new Vue({
             audioDOM.play();
         },
         quxiao() {
+            stopAnimate();
             startAnimate();
             this.isLuckyDraw = false
             this.numberPeople = undefined

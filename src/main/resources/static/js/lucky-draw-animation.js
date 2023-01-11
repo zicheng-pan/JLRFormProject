@@ -186,12 +186,12 @@ function startAnimate() {
     }, 5000);
 }
 
-function stopAnimate(type) {
+function stopAnimate() {
     if (animateTime) {
         clearTimeout(animateTime);
         animateTime = undefined
     }
-    setAnimate(type);
+    setAnimate('table');
 }
 
 function setAnimate(type) {

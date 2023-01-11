@@ -101,7 +101,7 @@
             $("#answer").answerSheet({});
 
             $("#mysubmit").click(function () {
-                if (confirm("您确定要已经完成了吗？")) {
+                if (confirm("您确定要提交吗？")) {
                     var cdsid = getQueryVariable("cdsid");
                     var answer = [];
                     for (i = 0; i < questionNum; i++) {

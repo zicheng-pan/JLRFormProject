@@ -199,12 +199,12 @@ insert into user(cdsid,e_name,c_name) values('wran','Ran','魏然'),
 
 insert into quiz(index, context)
 values (1, 'Which is NOT belonging to the 3 pillars to build supply chain resilience?'),
-       (2, 'In JLR family, which is the best selling model in so far in current financial year?'),
-       (3, 'Which is the 3rd issue in ranking of issue collected from all PE teams?'),
-       (4, 'Under Agile approach, which following is variable?'),
-       (5, 'In which direction, you will see the view as picture below in new office building?'),
-       (6, 'How many functions will be delivered in EVA25?'),
-       (7, 'coming soon');
+       (2, 'In JLR family, which is the best-selling model so far in current financial year?'),
+       (3, 'Which is the 3rd ranking issue in the list as collected from PE teams?'),
+       (4, 'What is the variate under Agile approach?'),
+       (5, 'How many New Starters do we have in PE team from Sep 5th 2022 till now?'),
+       (6, 'In which direction, you will see the view as picture below in new office building?'),
+       (7, 'How many functions will be delivered in EVA25?');
 
 insert into quiz_option(question_index, index, context, is_answer)
 values (1, 1, 'Increase Transparency', false),
@@ -223,16 +223,16 @@ values (1, 1, 'Increase Transparency', false),
        (4, 2, 'Time', false),
        (4, 3, 'Quality', false),
        (4, 4, 'Scope', true),
-       (5, 1, 'East', false),
-       (5, 2, 'South', false),
-       (5, 3, 'West', true),
-       (5, 4, 'North', false),
-       (6, 1, '20+', false),
-       (6, 2, '30+', true),
-       (6, 3, '40+', false),
-       (6, 4, '50+', false),
-       (7, 1, 'test7 option1，', false),
-       (7, 2, 'test7 option2，', false),
-       (7, 3, 'test7 option3，', true),
-       (7, 4, 'test7 option4，', false)
+       (5, 1, '55', false),
+       (5, 2, '61', false),
+       (5, 3, '65', true),
+       (5, 4, '70', false),
+       (6, 1, 'East', false),
+       (6, 2, 'South', false),
+       (6, 3, 'West', true),
+       (6, 4, 'North', false),
+       (7, 1, '20+', false),
+       (7, 2, '30+', true),
+       (7, 3, '40+', false),
+       (7, 4, '50+', false)
 ;

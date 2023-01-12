@@ -224,7 +224,7 @@
                             <p>Thanks</p>
                             <p>&nbsp;</p>
                             <p>China VCDP Team can do everything</p>
-                            <p>Always supports your succeed</p>
+                            <p>Always support you to succeed</p>
                         </div>
                     </div>
                     <div id="thank" style="visibility: hidden;text-align: center;font-size: 40px">
@@ -233,7 +233,8 @@
                         <p style="font-size: 50px;font-weight: bold">Thanks</p>
                         <p>&nbsp;</p>
                         <p>China VCDP Team can do everything</p>
-                        <p>Always supports your succeed</p>
+                        <p>Always support you to succeed</p>
+                        <div id="shoukuan_middle" style="margin-left: 20%;background-image: url('pic/Eva_shoukuan_img2.png');background-size: 100%;height: 400px;width: 400px;z-index: 999"></div>
                     </div>
                 </div>
             </div>
@@ -244,7 +245,7 @@
 <audio id="myAudio" controls hidden="true" autoplay preload>
     <source src="./mp3/end.mp3" type="audio/mpeg">
 </audio>
-<div style="position: fixed;bottom: 15px;right:15px;background-image: url('pic/Eva_shoukuan_img2.png');background-size: 100%;height: 330px;width: 330px;z-index: 999"></div>
+<div id="shoukuan_rightbottom" style="position: fixed;bottom: 15px;right:15px;background-image: url('pic/Eva_shoukuan_img2.png');background-size: 100%;height: 330px;width: 330px;z-index: 999"></div>
 </body>
 <script>
     $(function () {
@@ -252,7 +253,7 @@
 
             $("#slideshow").html('');
             $("#thank").attr("style", "visibilitr:visible;text-align: center;font-size: 40px");
-
+            $("#shoukuan_rightbottom").attr("style","visibility: hidden");
         }, 30000)
     })
 </script>

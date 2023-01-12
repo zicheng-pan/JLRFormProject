@@ -108,7 +108,7 @@ class Arm {
             c.font = fontheight + "px serif";
             // console.log("#####");
             // console.log(this.cdsid);
-            let content = "ID:" + this.cdsid;
+            let content = this.cdsid;
             if (contentMap.hasOwnProperty(this.cdsid)) {
                 content = contentMap[this.cdsid];
             } else {

@@ -43,15 +43,21 @@
 
 </head>
 
-<body>
+<body onclick="autoplaybgm()">
 
 <audio id="myAudio" controls hidden="true">
     <source src="./mp3/新闻联播.mp3" type="audio/mpeg">
 </audio>
 
+<audio id="bgmAudio" controls hidden="true">
+    <source src="./mp3/daojishi_11.mp3" type="audio/mpeg">
+</audio>
+
 </body>
 <script>
     function playbgm() {
+        var video2 = document.getElementById('bgmAudio');
+        video2.pause();
         var video = document.getElementById('myAudio');
         video.addEventListener("ended", function () {
             video.stop();
@@ -63,6 +69,12 @@
         $.get(serverhost + "/user/refresh", function (html) {
             alert("refresh database " + html);
         });
+    }
+
+    function autoplaybgm(){
+        var video2 = document.getElementById('bgmAudio');
+        video2.play();
+        video2.addEventListener("ended", video2.play, true);
     }
 </script>
 
